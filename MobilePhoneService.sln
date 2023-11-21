@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePhoneServiceWeb", "MobilePhoneServiceWeb\MobilePhoneServiceWeb.csproj", "{4AA2B434-A3EF-4E90-BF68-964A34D0947E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePhoneService.DataAccess", "MobilePhoneService.DataAccess\MobilePhoneService.DataAccess.csproj", "{8DF062D5-B1DE-4149-81AB-05705654F422}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePhoneService.Models", "MobilePhoneService.Models\MobilePhoneService.Models.csproj", "{CED98D85-1D08-4272-A515-235B743F86CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4AA2B434-A3EF-4E90-BF68-964A34D0947E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AA2B434-A3EF-4E90-BF68-964A34D0947E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AA2B434-A3EF-4E90-BF68-964A34D0947E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DF062D5-B1DE-4149-81AB-05705654F422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF062D5-B1DE-4149-81AB-05705654F422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF062D5-B1DE-4149-81AB-05705654F422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF062D5-B1DE-4149-81AB-05705654F422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED98D85-1D08-4272-A515-235B743F86CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED98D85-1D08-4272-A515-235B743F86CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED98D85-1D08-4272-A515-235B743F86CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED98D85-1D08-4272-A515-235B743F86CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

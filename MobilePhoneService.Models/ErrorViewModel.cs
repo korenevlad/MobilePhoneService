@@ -1,4 +1,4 @@
-namespace MobilePhoneServiceWeb.Models
+namespace MobilePhoneService.Models
 {
     public class ErrorViewModel
     {

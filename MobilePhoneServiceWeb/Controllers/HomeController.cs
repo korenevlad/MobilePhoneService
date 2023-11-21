@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MobilePhoneServiceWeb.Models;
+using MobilePhoneService.Models;
 using System.Diagnostics;
 
 namespace MobilePhoneServiceWeb.Controllers
