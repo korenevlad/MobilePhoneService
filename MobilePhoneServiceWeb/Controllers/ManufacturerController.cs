@@ -6,11 +6,11 @@ using System.Diagnostics;
 
 namespace MobilePhoneServiceWeb.Controllers
 {
-    public class HomeController : Controller
+    public class ManufacturerController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(IUnitOfWork unitOfWork)
+        public ManufacturerController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -21,7 +21,7 @@ namespace MobilePhoneServiceWeb.Controllers
             return View(manufacturers);
         }
 
-        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
