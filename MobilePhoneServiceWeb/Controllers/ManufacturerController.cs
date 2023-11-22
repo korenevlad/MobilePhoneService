@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using MobilePhoneService.DataAccess.Repository;
 using MobilePhoneService.DataAccess.Repository.IRepository;
 using MobilePhoneService.Models;
@@ -17,15 +18,68 @@ namespace MobilePhoneServiceWeb.Controllers
 
         public IActionResult Index()
         {
-            List<Manufacturer> manufacturers = _unitOfWork.Manufacturer.GetAll().ToList();
-            return View(manufacturers);
+            List<Manufacturer> manufacturer = _unitOfWork.Manufacturer.GetAll().ToList();
+            return View(manufacturer);
         }
 
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Upsert(int? manufacturer_id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (manufacturer_id == null || manufacturer_id == 0) //Добавление нового производителя
+            {
+                return View(new Manufacturer());
+            }
+            else //Обновление существующего производителя
+            {
+                Manufacturer findedManufacturer = _unitOfWork.Manufacturer.Get(u => u.manufacturer_id == manufacturer_id);
+                return View(findedManufacturer);
+            }
         }
+
+        [HttpPost]
+        public IActionResult Upsert(Manufacturer obj)
+        {
+            if (ModelState.IsValid)
+            {
+                if (obj.manufacturer_id == 0)
+                {
+                    _unitOfWork.Manufacturer.Add(obj);
+                    TempData["success"] = "Производитель добавлен успешно!";
+                }
+                else
+                {
+                    _unitOfWork.Manufacturer.Update(obj);
+                    TempData["success"] = "Производитель обновлен успешно!";
+                }
+                _unitOfWork.Save();
+                return RedirectToAction("Index");
+            }
+            else { return View(obj); }
+        }
+
+
+        #region API CALLS
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Manufacturer> manufacturerList = _unitOfWork.Manufacturer.GetAll().ToList();
+            return Json(new { data = manufacturerList });
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var obj = _unitOfWork.Manufacturer.Get(u => u.manufacturer_id == id);
+            if (obj == null)
+            {
+                return Json(new { succes = false, message = "Ошибка при удалении категории!" });
+            }
+            _unitOfWork.Manufacturer.Remove(obj);
+            _unitOfWork.Save();
+            return Json(new { succes = true, message = "Категория удалена успешно!" });
+        }
+
+
+        #endregion
     }
 }

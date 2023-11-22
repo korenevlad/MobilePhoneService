@@ -11,26 +11,29 @@
 
     <div class="card-body p-4">
         <div class="row pb-4">
-            <div class="col-12">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Manufacturer" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Добавить нового производителя
+                </a>
             </div>
         </div>
-
-        <table class="table table-bordered table-striped bg-dark">
+        <table id="tblDataManufacturer" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Название</th>
                     <th>Страна</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var obj in Model.OrderBy(u => u.manufacturer_id))
-                {
-                    <tr>
-                        <td>@obj.manufacturer_name</td>
-                        <td>@obj.country</td>
-                    </tr>
-                }
-            </tbody>
         </table>
     </div>
+
+
 </div>
+
+
+@section Scripts{
+    <script src="~/js/manufacturer_list.js"></script>
+}

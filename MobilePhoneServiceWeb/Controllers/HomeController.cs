@@ -17,8 +17,7 @@ namespace MobilePhoneServiceWeb.Controllers
 
         public IActionResult Index()
         {
-            List<Manufacturer> manufacturers = _unitOfWork.Manufacturer.GetAll().ToList();
-            return View(manufacturers);
+            return View();
         }
 
         

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -20,6 +21,7 @@ namespace MobilePhoneService.Models
 
         [MaxLength(50)]
         [DisplayName("Country")]
-        public string country { get; set; }
+        [ValidateNever]
+        public string? country { get; set; }
     }
 }

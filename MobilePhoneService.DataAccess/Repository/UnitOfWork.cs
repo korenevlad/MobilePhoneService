@@ -18,5 +18,10 @@ namespace MobilePhoneService.DataAccess.Repository
             _db = db;
             Manufacturer = new ManufacturerRepository(_db);
         }
+
+        public void Save()
+        {
+            _db.SaveChanges();
+        }
     }
 }
