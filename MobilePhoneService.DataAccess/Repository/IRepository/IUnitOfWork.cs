@@ -9,6 +9,7 @@ namespace MobilePhoneService.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         IManufacturerIRepository Manufacturer { get; }
+        IOperatingSystemRepository OperatingSystem { get; }
         void Save();
     }
 }

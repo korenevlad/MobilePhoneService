@@ -13,5 +13,6 @@ namespace MobilePhoneService.DataAccess.Date
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         DbSet<Manufacturer> Manufacturer { get; set; }
+        DbSet<Operating_system> Operating_system { get; set; }
     }
 }

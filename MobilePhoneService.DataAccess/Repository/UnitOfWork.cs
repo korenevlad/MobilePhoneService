@@ -13,10 +13,12 @@ namespace MobilePhoneService.DataAccess.Repository
         private ApplicationDbContext _db;
 
         public IManufacturerIRepository Manufacturer { get; private set; }
+        public IOperatingSystemRepository OperatingSystem { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Manufacturer = new ManufacturerRepository(_db);
+            OperatingSystem = new OperatingSystemRepository(_db);
         }
 
         public void Save()

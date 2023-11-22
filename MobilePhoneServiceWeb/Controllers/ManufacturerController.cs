@@ -72,11 +72,11 @@ namespace MobilePhoneServiceWeb.Controllers
             var obj = _unitOfWork.Manufacturer.Get(u => u.manufacturer_id == id);
             if (obj == null)
             {
-                return Json(new { succes = false, message = "Ошибка при удалении категории!" });
+                return Json(new { succes = false, message = "Ошибка при удалении производителя!" });
             }
             _unitOfWork.Manufacturer.Remove(obj);
             _unitOfWork.Save();
-            return Json(new { succes = true, message = "Категория удалена успешно!" });
+            return Json(new { succes = true, message = "производитель удален успешно!" });
         }
 
 
