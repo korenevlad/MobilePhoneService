@@ -14,14 +14,14 @@ namespace MobilePhoneService.Models
         [Key]
         public int manufacturer_id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Required(ErrorMessage = "Поле Название обязательно для заполнения!")]
         [DisplayName("Name")]
+        [MaxLength(50)]
         public string manufacturer_name { get; set; }
 
-        [MaxLength(50)]
-        [DisplayName("Country")]
         [ValidateNever]
+        [DisplayName("Country")]
+        [MaxLength(50)]
         public string? country { get; set; }
     }
 }

@@ -13,20 +13,33 @@ namespace MobilePhoneService.Models
         [Key]
         public int cpu_id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Required(ErrorMessage = "Название обязательно для заполнения!")]
         [DisplayName("Model")]
+        [MaxLength(50)]
         public string model { get; set; }
 
-        [Required]
-        [Range(2, 16, ErrorMessage = "Количество ядер может быть в диапозоне от 2 до 16!")]
+
+        public enum AmountCernelsOptions
+        {
+            [Display(Name = "4")]
+            AmountCernels4 = 4,
+
+            [Display(Name = "6")]
+            AmountCernels6 = 6,
+
+            [Display(Name = "8")]
+            AmountCernels8 = 8,
+        }
+        [Required(ErrorMessage = "Количестов ядер обязательно для заполнения!")]
         [DisplayName("Amount cernels")]
+        [EnumDataType(typeof(AmountCernelsOptions), ErrorMessage = "Допустимые значения для количества ядер: 4, 6 или 8!")]
         public int amount_cernels { get; set; }
 
 
-        [Required]
-        [Range(1, 3, ErrorMessage = "Частота может быть в диапозоне от 1 до 3! Выберете ближайшее целое число!")]
+
+        [Required(ErrorMessage = "Частота обязательна для заполнения!")]
         [DisplayName("Frequency")]
+        [Range(1, 3, ErrorMessage = "Частота может быть в диапозоне от 1 до 3! Выберете ближайшее целое число!")]
         public int frequency { get; set; }
     }
 }

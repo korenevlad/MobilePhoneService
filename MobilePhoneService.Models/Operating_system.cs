@@ -14,14 +14,14 @@ namespace MobilePhoneService.Models
         [Key]
         public int operating_system_id { get; set; }
 
-        [Required]
-        [MaxLength(50, ErrorMessage = "Имя не может превышать 50 символов!")]
+        [Required(ErrorMessage = "Поле Название обязательно для заполнения!")]
         [DisplayName("Name")]
+        [MaxLength(50, ErrorMessage = "Имя не может превышать 50 символов!")]
         public string operating_system_name { get; set; }
 
-        [Required]
-        [Range(1, 17, ErrorMessage = "Версия может быть в диапозоне от 1 до 17!")]
+        [Required(ErrorMessage = "Поле Версия обязательно для заполнения!")]
         [DisplayName("Version")]
+        [Range(1, 17, ErrorMessage = "Версия может быть в диапозоне от 1 до 17!")]
         public int operating_system_version { get; set; }
     }
 }
