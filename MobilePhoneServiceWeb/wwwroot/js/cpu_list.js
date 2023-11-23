@@ -5,17 +5,19 @@ $(document).ready(function () {
 });
 
 function loadDataTable() {
-    dataTable = $('#tblDataManufacturer').DataTable({
-        "ajax": { url: '/manufacturer/getall' },
+    dataTable = $('#tblDataCpu').DataTable({
+        "ajax": { url: '/cpu/getall' },
         "columns": [
-            { data: 'manufacturer_name', "width": "35%" },
-            { data: 'country', "width": "35%" },
+            { data: 'cpu_id', "width": "10%" },
+            { data: 'model', "width": "20%" },
+            { data: 'amount_cernels', "width": "20%" },
+            { data: 'frequency', "width": "20%" },
             {
-                data: 'manufacturer_id',
+                data: 'cpu_id',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">
-                    <a href="/manufacturer/upsert?manufacturer_id=${data}" class="btn btn-primary form-control mx-2"><i class="bi bi-pencil-fill"></i > &nbsp; Обновить</a>
-                    <a onClick=Delete('manufacturer/delete/${data}') class="btn btn-danger form-control"><i class="bi bi-trash3"></i > &nbsp; Удалить</a>
+                    <a href="/cpu/upsert?cpu_id=${data}" class="btn btn-primary form-control mx-2"><i class="bi bi-pencil-fill"></i > &nbsp; Обновить</a>
+                    <a onClick=Delete('cpu/delete/${data}') class="btn btn-danger form-control"><i class="bi bi-trash3"></i > &nbsp; Удалить</a>
                     </div>`
                 },
                 "width": "30%"
@@ -36,7 +38,7 @@ function Delete(url) {
 
     swalWithBootstrapButtons.fire({
         title: 'Вы уверены?',
-        text: "Производитель будет удален безвозвратно!",
+        text: "Процессор будет удален безвозвратно!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Удалить',

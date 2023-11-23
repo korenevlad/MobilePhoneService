@@ -14,9 +14,13 @@ namespace MobilePhoneServiceWeb.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index()
+        public IActionResult Index(string? infoError)
         {
             List<Phone_specification> phineSpecificationList = _unitOfWork.PhoneSpecification.GetAll(includeProperties: "Cpu_of_specification,Operating_system_of_specification").ToList();
+            if(infoError != null)
+            {
+                TempData["error"] = infoError;
+            }
             return View(phineSpecificationList);
         }
 
@@ -103,7 +107,7 @@ namespace MobilePhoneServiceWeb.Controllers
             }
             catch
             {
-                return Json(new { error = true, success = false, message = "Удаление невозможно! Есть модели телефонов, у которых есть данная спецификация!" });
+                return RedirectToAction("Index", new { infoError = "Удаление невозможно! Есть модели телефонов, у которых есть данная спецификация!" });
             }
         }
 

@@ -71,9 +71,17 @@ namespace MobilePhoneServiceWeb.Controllers
             {
                 return Json(new { succes = false, message = "Ошибка при удалении процессора!" });
             }
-            _unitOfWork.Cpu.Remove(obj);
-            _unitOfWork.Save();
-            return Json(new { succes = true, message = "Процессор удален успешно!" });
+            try
+            {
+                _unitOfWork.Cpu.Remove(obj);
+                _unitOfWork.Save();
+                return Json(new { succes = true, message = "Процессор удален успешно!" });
+
+            }
+            catch
+            {
+                return Json(new { success = false, message = "Удаление невозможно! Есть спецификации телефонов, у которых есть данный процессор!" });
+            }
         }
 
 

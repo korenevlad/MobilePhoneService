@@ -8,36 +8,44 @@ function loadDataTable() {
     dataTable = $('#tblDataPhoneSpecification').DataTable({
         "ajax": { url: '/phonespecification/getall' },
         "columns": [
+            { data: 'specification_id', "width": "10%" },
             { data: 'ram', "width": "10%" },
             { data: 'internal_memory', "width": "10%" },
             { data: 'screen_size', "width": "10%" },
             {
                 data: null,
                 render: function (row) {
+                    return row.cpu_of_specification.model;
+                },
+                "width": "10%"
+            },
+            {
+                data: null,
+                render: function (row) {
                     return row.cpu_of_specification.amount_cernels;
                 },
-                "width": "11%"
+                "width": "10%"
             },
             {
                 data: null,
                 render: function (data, type, row) {
                     return row.cpu_of_specification.frequency;
                 },
-                "width": "11%"
+                "width": "10%"
             },
             {
                 data: null,
                 render: function (row) {
                     return row.operating_system_of_specification.operating_system_name;
                 },
-                "width": "11%"
+                "width": "10%"
             },
             {
                 data: null,
                 render: function (data, type, row) {
                     return row.operating_system_of_specification.operating_system_version;
                 },
-                "width": "11%"
+                "width": "10%"
             },
             {
                 data: 'specification_id',

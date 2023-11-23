@@ -74,11 +74,17 @@ namespace MobilePhoneServiceWeb.Controllers
             {
                 return Json(new { succes = false, message = "Ошибка при удалении операционной системы!" });
             }
-            _unitOfWork.OperatingSystem.Remove(obj);
-            _unitOfWork.Save();
-            return Json(new { succes = true, message = "Операционная система удалена успешно!" });
+            try
+            {
+                _unitOfWork.OperatingSystem.Remove(obj);
+                _unitOfWork.Save();
+                return Json(new { succes = true, message = "Операционная система удалена успешно!" });
+            }
+            catch
+            {
+                return Json(new { success = false, message = "Удаление невозможно! Есть спецификации телефонов, у которых есть данная операционная система!" });
+            }
         }
-
 
         #endregion
     }

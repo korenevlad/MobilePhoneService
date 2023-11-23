@@ -8,8 +8,9 @@ function loadDataTable() {
     dataTable = $('#tblDataOperatingSystem').DataTable({
         "ajax": { url: '/operatingsystem/getall' },
         "columns": [
-            { data: 'operating_system_name', "width": "35%" },
-            { data: 'operating_system_version', "width": "35%" },
+            { data: 'operating_system_id', "width": "10%" },
+            { data: 'operating_system_name', "width": "30%" },
+            { data: 'operating_system_version', "width": "30%" },
             {
                 data: 'operating_system_id',
                 "render": function (data) {
