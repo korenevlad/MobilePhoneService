@@ -1,31 +1,36 @@
-﻿@model Operating_system
+﻿@model Cpu
 
 <div class="card shadow border-0 mt-5">
     <div class="card-header bg-primary bg-gradient ml-0 py-2">
         <div class="row">
             <div class="col-12 text-center">
-                <h3 class="text-white py-2"> @(Model.operating_system_id != 0 ? "Обновление" : "Добавление") операционной системы</h3>
+                <h3 class="text-white py-2"> @(Model.cpu_id != 0 ? "Обновление" : "Добавление") процессора</h3>
             </div>
         </div>
     </div>
     <div class="card-body p-4">
         <form method="post" class="row">
-            <input asp-for="operating_system_id" hidden />
+            <input asp-for="cpu_id" hidden />
             <div class="border p-3">
                 <div asp-validation-summary="All"></div>
                 <div class="py-2 col-12">
-                    <label asp-for="operating_system_name" class="ms-0 badge">Название</label>
-                    <input asp-for="operating_system_name" autocomplete="off" class="form-control border-0 shadow" placeholder="Название" />
-                    <span asp-validation-for="operating_system_name" class="text-danger"></span>
+                    <label asp-for="model" class="ms-0 badge">Модель</label>
+                    <input asp-for="model" autocomplete="off" class="form-control border-0 shadow" placeholder="Модель" />
+                    <span asp-validation-for="model" class="text-danger"></span>
                 </div>
                 <div class="py-2 col-12">
-                    <label asp-for="operating_system_version" class="ms-0 badge">Версия</label>
-                    <input asp-for="operating_system_version" autocomplete="off" class="form-control border-0 shadow" placeholder="Версия" />
-                    <span asp-validation-for="operating_system_version" class="text-danger"></span>
+                    <label asp-for="amount_cernels" class="ms-0 badge">Количество ядер</label>
+                    <input asp-for="amount_cernels" autocomplete="off" class="form-control border-0 shadow" placeholder="Количество ядер" />
+                    <span asp-validation-for="amount_cernels" class="text-danger"></span>
+                </div>
+                <div class="py-2 col-12">
+                    <label asp-for="frequency" class="ms-0 badge">Частота</label>
+                    <input asp-for="frequency" autocomplete="off" class="form-control border-0 shadow" placeholder="Частота" />
+                    <span asp-validation-for="frequency" class="text-danger"></span>
                 </div>
                 <div class="row pt-2">
                     <div class="col-6 col-md-3">
-                        @if (Model.operating_system_id != 0)
+                        @if (Model.cpu_id != 0)
                         {
                             <button type="submit" class="btn btn-outline-success border form-control"><i class="bi bi-pencil-fill"></i>&nbsp; Обновить</button>
                         }
@@ -35,7 +40,7 @@
                         }
                     </div>
                     <div class="col-6 col-md-3">
-                        <a asp-controller="OperatingSystem" asp-action="Index" class="btn btn-outline-danger border form-control">
+                        <a asp-controller="Cpu" asp-action="Index" class="btn btn-outline-danger border form-control">
                             <i class="bi bi-arrow-bar-left"></i> &nbsp;Назад к списку
                         </a>
                     </div>

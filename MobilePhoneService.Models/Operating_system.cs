@@ -15,13 +15,13 @@ namespace MobilePhoneService.Models
         public int operating_system_id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Имя не может превышать 50 символов!")]
         [DisplayName("Name")]
         public string operating_system_name { get; set; }
 
-        [Range(0, 17)]
+        [Required]
+        [Range(1, 17, ErrorMessage = "Версия может быть в диапозоне от 1 до 17!")]
         [DisplayName("Version")]
-        [ValidateNever]
-        public int? operating_system_version { get; set; }
+        public int operating_system_version { get; set; }
     }
 }

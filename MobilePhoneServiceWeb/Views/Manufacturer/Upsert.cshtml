@@ -12,15 +12,16 @@
         <form method="post" class="row">
             <input asp-for="manufacturer_id" hidden />
             <div class="border p-3">
-                @*<div asp-validation-summary="All"></div>*@
+                <div asp-validation-summary="All"></div>
                 <div class="py-2 col-12">
                     <label asp-for="manufacturer_name" class="ms-0 badge">Название</label>
                     <input asp-for="manufacturer_name" autocomplete="off" class="form-control border-0 shadow" placeholder="Название" />
                     <span asp-validation-for="manufacturer_name" class="text-danger"></span>
                 </div>
                 <div class="py-2 col-12">
-                    <label asp-for="country" class="ms-0 badge">Код</label>
+                    <label asp-for="country" class="ms-0 badge">Страна</label>
                     <input asp-for="country" autocomplete="off" class="form-control border-0 shadow" placeholder="Страна" />
+                    <span asp-validation-for="country" class="text-danger"></span>
                 </div>
 
                 <div class="row pt-2">

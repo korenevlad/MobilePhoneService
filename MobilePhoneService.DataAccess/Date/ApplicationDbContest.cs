@@ -14,5 +14,6 @@ namespace MobilePhoneService.DataAccess.Date
 
         DbSet<Manufacturer> Manufacturer { get; set; }
         DbSet<Operating_system> Operating_system { get; set; }
+        DbSet<Cpu> Cpu { get; set; }
     }
 }

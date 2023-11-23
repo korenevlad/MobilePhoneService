@@ -76,7 +76,7 @@ namespace MobilePhoneServiceWeb.Controllers
             }
             _unitOfWork.Manufacturer.Remove(obj);
             _unitOfWork.Save();
-            return Json(new { succes = true, message = "производитель удален успешно!" });
+            return Json(new { succes = true, message = "Производитель удален успешно!" });
         }
 
 

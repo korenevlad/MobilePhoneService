@@ -5,17 +5,17 @@ $(document).ready(function () {
 });
 
 function loadDataTable() {
-    dataTable = $('#tblDataOperatingSystem').DataTable({
-        "ajax": { url: '/operatingsystem/getall' },
+    dataTable = $('#tblDataManufacturer').DataTable({
+        "ajax": { url: '/manufacturer/getall' },
         "columns": [
-            { data: 'operating_system_name', "width": "35%" },
-            { data: 'operating_system_version', "width": "35%" },
+            { data: 'manufacturer_name', "width": "35%" },
+            { data: 'country', "width": "35%" },
             {
-                data: 'operating_system_id',
+                data: 'manufacturer_id',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">
-                    <a href="/operatingsystem/upsert?operating_system_id=${data}" class="btn btn-primary form-control mx-2"><i class="bi bi-pencil-fill"></i > &nbsp; Обновить</a>
-                    <a onClick=Delete('operatingsystem/delete/${data}') class="btn btn-danger form-control"><i class="bi bi-trash3"></i > &nbsp; Удалить</a>
+                    <a href="/manufacturer/upsert?manufacturer_id=${data}" class="btn btn-primary form-control mx-2"><i class="bi bi-pencil-fill"></i > &nbsp; Обновить</a>
+                    <a onClick=Delete('manufacturer/delete/${data}') class="btn btn-danger form-control"><i class="bi bi-trash3"></i > &nbsp; Удалить</a>
                     </div>`
                 },
                 "width": "30%"
@@ -36,7 +36,7 @@ function Delete(url) {
 
     swalWithBootstrapButtons.fire({
         title: 'Вы уверены?',
-        text: "Категория будет удалена безвозвратно!",
+        text: "Производитель будет удален безвозвратно!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Удалить',
