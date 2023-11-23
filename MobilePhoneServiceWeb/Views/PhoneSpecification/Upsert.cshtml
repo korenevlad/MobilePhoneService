@@ -1,0 +1,97 @@
+﻿@model PhoneSpecificationVM
+
+<div class="card shadow border-0 mt-5">
+    <div class="card-header bg-primary bg-gradient ml-0 py-2">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-white py-2"> @(Model.PhoneSpecification.specification_id != 0 ? "Обновление" : "Добавление") спецификации</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row">
+            <input asp-for="PhoneSpecification.specification_id" hidden />
+            <div class="border p-3">
+                <div asp-validation-summary="All"></div>
+
+
+                <div class="py-2 col-12">
+                    <label asp-for="PhoneSpecification.ram" class="ms-0 badge">Оперативная память</label>
+                    <input asp-for="PhoneSpecification.ram" autocomplete="off" class="form-control border-0 shadow" placeholder="Оперативная память" />
+                    <span asp-validation-for="PhoneSpecification.ram" class="text-danger"></span>
+                </div>
+
+
+                <div class="py-2 col-12">
+                    <label asp-for="PhoneSpecification.internal_memory" class="ms-0 badge">Внутренняя память</label>
+                    <input asp-for="PhoneSpecification.internal_memory" autocomplete="off" class="form-control border-0 shadow" placeholder="Внутренняя память" />
+                    <span asp-validation-for="PhoneSpecification.internal_memory" class="text-danger"></span>
+                </div>
+
+                <div class="py-2 col-12">
+                    <label asp-for="PhoneSpecification.screen_size" class="ms-0 badge">Размер экрана</label>
+                    <input asp-for="PhoneSpecification.screen_size" autocomplete="off" class="form-control border-0 shadow" placeholder="Размер экрана" />
+                    <span asp-validation-for="PhoneSpecification.screen_size" class="text-danger"></span>
+                </div>
+
+
+                <div class="py-2 col-12">
+                    <label asp-for="PhoneSpecification.cpu_id" class="ms-0 badge">Выбор процессора</label>
+                    <select asp-for="@Model.PhoneSpecification.cpu_id" asp-items="@Model.CpuList" class="form-select border-0 shadow">
+                        <option disabled selected>Выбор процессора</option>
+                    </select>
+                    <span asp-validation-for="PhoneSpecification.cpu_id" class="text-danger"></span>
+                </div>
+
+                <div class="py-2 col-12">
+                    <label asp-for="PhoneSpecification.operating_system_id" class="ms-0 badge">Выбор операционной системы</label>
+                    <select asp-for="@Model.PhoneSpecification.operating_system_id" asp-items="@Model.OpearatingSystemList" class="form-select border-0 shadow">
+                        <option disabled selected>Выбор операционной системы</option>
+                    </select>
+                    <span asp-validation-for="PhoneSpecification.operating_system_id" class="text-danger"></span>
+                </div>
+
+
+                <div class="row pt-2">
+                    <div class="col-6 col-md-3">
+                        @if (Model.PhoneSpecification.specification_id != 0)
+                        {
+                            <button type="submit" class="btn btn-outline-success border form-control"><i class="bi bi-pencil-fill"></i>&nbsp; Обновить</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-outline-success border form-control"><i class="bi bi-plus-square"></i> &nbsp; Добавить</button>
+                        }
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="PhoneSpecification" asp-action="Index" class="btn btn-outline-danger border form-control">
+                            <i class="bi bi-arrow-bar-left"></i> &nbsp;Назад к списку
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+
+
+
+
+
+
+

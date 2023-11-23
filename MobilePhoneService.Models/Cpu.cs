@@ -23,10 +23,8 @@ namespace MobilePhoneService.Models
         {
             [Display(Name = "4")]
             AmountCernels4 = 4,
-
             [Display(Name = "6")]
             AmountCernels6 = 6,
-
             [Display(Name = "8")]
             AmountCernels8 = 8,
         }
@@ -39,7 +37,7 @@ namespace MobilePhoneService.Models
 
         [Required(ErrorMessage = "Частота обязательна для заполнения!")]
         [DisplayName("Frequency")]
-        [Range(1, 3, ErrorMessage = "Частота может быть в диапозоне от 1 до 3! Выберете ближайшее целое число!")]
+        [Range(1, 3, ErrorMessage = "Частота может быть в диапозоне от 1 до 3 Гц! Выберете ближайшее целое число!")]
         public int frequency { get; set; }
     }
 }

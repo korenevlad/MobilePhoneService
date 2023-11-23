@@ -12,8 +12,8 @@ namespace MobilePhoneService.DataAccess.Repository.IRepository
     {
         void Add(T obj);
         void Remove(T obj);
-        IEnumerable<T> GetAll();
-        T Get(Expression<Func<T, bool>> filter);
+        IEnumerable<T> GetAll(string? includeProperties = null);
+        T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
 
         void Update(T obj);
     }
