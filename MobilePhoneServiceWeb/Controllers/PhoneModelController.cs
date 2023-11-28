@@ -60,7 +60,7 @@ namespace MobilePhoneServiceWeb.Controllers
                 else
                 {
                     _unitOfWork.PhoneModel.Update(phoneModel_obj.phoneModel);
-                    TempData["succes"] = "Модель телефона обновлена успешно!";
+                    TempData["success"] = "Модель телефона обновлена успешно!";
                 }
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
