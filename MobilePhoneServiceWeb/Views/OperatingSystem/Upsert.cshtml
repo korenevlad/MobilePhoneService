@@ -14,13 +14,13 @@
             <div class="border p-3">
                 <div asp-validation-summary="All"></div>
                 <div class="py-2 col-12">
-                    <label asp-for="operating_system_name" class="ms-0 badge">Название</label>
+                    <label asp-for="operating_system_name" class="form-label ms-2">Название</label>
                     <input asp-for="operating_system_name" autocomplete="off" class="form-control border-0 shadow" placeholder="Название" />
                     <span asp-validation-for="operating_system_name" class="text-danger"></span>
                 </div>
                 <div class="py-2 col-12">
-                    <label asp-for="operating_system_version" class="ms-0 badge">Версия</label>
-                    <input asp-for="operating_system_version" autocomplete="off" class="form-control border-0 shadow" placeholder="Версия" />
+                    <label asp-for="operating_system_version" class="form-label mt-4 ms-2">Версия</label>
+                    <input asp-for="operating_system_version" autocomplete="off" class="form-control border-0 shadow mb-4" placeholder="Версия" />
                     <span asp-validation-for="operating_system_version" class="text-danger"></span>
                 </div>
                 <div class="row pt-2">

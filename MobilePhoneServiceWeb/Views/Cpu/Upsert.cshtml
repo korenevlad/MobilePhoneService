@@ -14,18 +14,18 @@
             <div class="border p-3">
                 <div asp-validation-summary="All"></div>
                 <div class="py-2 col-12">
-                    <label asp-for="model" class="ms-0 badge">Название</label>
-                    <input asp-for="model" autocomplete="off" class="form-control border-0 shadow" placeholder="Название" />
+                    <label asp-for="model" class="form-label ms-2">Название</label>
+                    <input asp-for="model" autocomplete="off" class="form-control border-1 shadow" placeholder="Название" />
                     <span asp-validation-for="model" class="text-danger"></span>
                 </div>
                 <div class="py-2 col-12">
-                    <label asp-for="amount_cernels" class="ms-0 badge">Количество ядер</label>
+                    <label asp-for="amount_cernels" class="form-label mt-4 ms-2">Количество ядер</label>
                     <input asp-for="amount_cernels" autocomplete="off" class="form-control border-0 shadow" placeholder="Количество ядер" />
                     <span asp-validation-for="amount_cernels" class="text-danger"></span>
                 </div>
                 <div class="py-2 col-12">
-                    <label asp-for="frequency" class="ms-0 badge">Частота</label>
-                    <input asp-for="frequency" autocomplete="off" class="form-control border-0 shadow" placeholder="Частота" />
+                    <label asp-for="frequency" class="form-label mt-4 ms-2">Частота</label>
+                    <input asp-for="frequency" autocomplete="off" class="form-control border-0 shadow mb-4" placeholder="Частота" />
                     <span asp-validation-for="frequency" class="text-danger"></span>
                 </div>
                 <div class="row pt-2">

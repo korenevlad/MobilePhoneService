@@ -14,7 +14,7 @@ namespace MobilePhoneService.Models
         [Key]
         public int manufacturer_id { get; set; }
 
-        [Required(ErrorMessage = "Поле Название обязательно для заполнения!")]
+        [Required(ErrorMessage = "Название обязательно для заполнения!")]
         [DisplayName("Name")]
         [MaxLength(50)]
         public string manufacturer_name { get; set; }

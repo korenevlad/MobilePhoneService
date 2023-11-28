@@ -16,39 +16,37 @@
 
 
                 <div class="py-2 col-12">
-                    <label asp-for="PhoneSpecification.ram" class="ms-0 badge">Оперативная память</label>
+                    <label asp-for="PhoneSpecification.ram" class="form-label ms-2">Оперативная память</label>
                     <input asp-for="PhoneSpecification.ram" autocomplete="off" class="form-control border-0 shadow" placeholder="Оперативная память" />
                     <span asp-validation-for="PhoneSpecification.ram" class="text-danger"></span>
                 </div>
 
 
                 <div class="py-2 col-12">
-                    <label asp-for="PhoneSpecification.internal_memory" class="ms-0 badge">Внутренняя память</label>
+                    <label asp-for="PhoneSpecification.internal_memory" class="form-label mt-4 ms-2">Внутренняя память</label>
                     <input asp-for="PhoneSpecification.internal_memory" autocomplete="off" class="form-control border-0 shadow" placeholder="Внутренняя память" />
                     <span asp-validation-for="PhoneSpecification.internal_memory" class="text-danger"></span>
                 </div>
 
                 <div class="py-2 col-12">
-                    <label asp-for="PhoneSpecification.screen_size" class="ms-0 badge">Размер экрана</label>
+                    <label asp-for="PhoneSpecification.screen_size" class="form-label mt-4 ms-2">Размер экрана</label>
                     <input asp-for="PhoneSpecification.screen_size" autocomplete="off" class="form-control border-0 shadow" placeholder="Размер экрана" />
                     <span asp-validation-for="PhoneSpecification.screen_size" class="text-danger"></span>
                 </div>
 
 
                 <div class="py-2 col-12">
-                    <label asp-for="PhoneSpecification.cpu_id" class="ms-0 badge">Выбор процессора</label>
-                    <select asp-for="@Model.PhoneSpecification.cpu_id" asp-items="@Model.CpuList" class="form-select border-0 shadow">
+                    <select asp-for="@Model.PhoneSpecification.cpu_id" asp-items="@Model.CpuList" class="form-select border-0 shadow mt-4">
                         <option disabled selected>Выбор процессора</option>
                     </select>
                     <span asp-validation-for="PhoneSpecification.cpu_id" class="text-danger"></span>
                 </div>
 
                 <div class="py-2 col-12">
-                    <label asp-for="PhoneSpecification.operating_system_id" class="ms-0 badge">Выбор операционной системы</label>
-                    <select asp-for="@Model.PhoneSpecification.operating_system_id" asp-items="@Model.OpearatingSystemList" class="form-select border-0 shadow">
+                    <select asp-for="@Model.PhoneSpecification.operating_system_id" asp-items="@Model.OpearatingSystemList" class="form-select border-0 shadow mt-4">
                         <option disabled selected>Выбор операционной системы</option>
                     </select>
-                    <span asp-validation-for="PhoneSpecification.operating_system_id" class="text-danger"></span>
+                    <span asp-validation-for="PhoneSpecification.operating_system_id" class="text-danger mb-4"></span>
                 </div>
 
 

@@ -12,6 +12,7 @@ namespace MobilePhoneService.DataAccess.Repository.IRepository
         IOperatingSystemRepository OperatingSystem { get; }
         ICpuRepository Cpu { get; }
         IPhoneSpecificationRepository PhoneSpecification { get; }
+        IPhoneModelRepository PhoneModel { get; }
         void Save();
     }
 }

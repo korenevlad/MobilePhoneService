@@ -16,6 +16,7 @@ namespace MobilePhoneService.DataAccess.Repository
         public IOperatingSystemRepository OperatingSystem { get; private set; }
         public ICpuRepository Cpu { get; private set; }
         public IPhoneSpecificationRepository PhoneSpecification { get; private set; }
+        public IPhoneModelRepository PhoneModel { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -24,6 +25,7 @@ namespace MobilePhoneService.DataAccess.Repository
             OperatingSystem = new OperatingSystemRepository(_db);
             Cpu = new CpuRepository(_db);
             PhoneSpecification = new PhoneSpecificationRepository(_db);
+            PhoneModel = new PhoneModelRepository(_db);
         }
 
         public void Save()

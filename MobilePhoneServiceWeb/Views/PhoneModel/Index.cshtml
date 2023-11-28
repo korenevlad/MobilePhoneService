@@ -1,0 +1,41 @@
+﻿@model List<Phone_model>
+
+<div class="card shadow border-0 mt-5">
+    <div class="card-header bg-primary bg-gradient ml-0 py-2">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-white py-2">Модели телефонов</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="row pb-4">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="PhoneModel" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую модель телефона
+                </a>
+            </div>
+        </div>
+        <table id="tblDataPhoneModel" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Производитель</th>
+                    <th>Название</th>
+                    <th>Год выпуска</th>
+                    <th>Страна</th>
+                    <th>Спецификации</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/phone_model.js"></script>
+}

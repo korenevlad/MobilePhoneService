@@ -14,13 +14,9 @@ namespace MobilePhoneServiceWeb.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index(string? infoError)
+        public IActionResult Index()
         {
             List<Phone_specification> phineSpecificationList = _unitOfWork.PhoneSpecification.GetAll(includeProperties: "Cpu_of_specification,Operating_system_of_specification").ToList();
-            if(infoError != null)
-            {
-                TempData["error"] = infoError;
-            }
             return View(phineSpecificationList);
         }
 
@@ -28,17 +24,16 @@ namespace MobilePhoneServiceWeb.Controllers
         public IActionResult Upsert(int? specification_id)
         {
             IEnumerable<SelectListItem> listItemCpu = _unitOfWork.Cpu.GetAll().Select(u =>
-                new SelectListItem { Text = u.cpu_id.ToString(), Value = u.cpu_id.ToString() });
+                new SelectListItem { Text = u.model.ToString(), Value = u.cpu_id.ToString() });
 
             IEnumerable<SelectListItem> listItemOS = _unitOfWork.OperatingSystem.GetAll().Select(u =>
-                new SelectListItem { Text = u.operating_system_id.ToString(), Value = u.operating_system_id.ToString() });
+                new SelectListItem { Text = u.operating_system_name.ToString(), Value = u.operating_system_id.ToString() });
 
             PhoneSpecificationVM phoneSpecification_obj = new PhoneSpecificationVM
             {
                 PhoneSpecification = new Phone_specification(),
                 CpuList = listItemCpu,
                 OpearatingSystemList = listItemOS
-                
             };
 
             if (specification_id == null || specification_id == 0)
@@ -73,10 +68,10 @@ namespace MobilePhoneServiceWeb.Controllers
             else
             {
                 phoneSpecification_obj.CpuList = _unitOfWork.Cpu.GetAll().Select(u =>
-                    new SelectListItem { Text = u.cpu_id.ToString(), Value = u.cpu_id.ToString() });
+                    new SelectListItem { Text = u.model.ToString(), Value = u.cpu_id.ToString() });
 
                 phoneSpecification_obj.OpearatingSystemList = _unitOfWork.OperatingSystem.GetAll().Select(u =>
-                    new SelectListItem { Text = u.operating_system_id.ToString(), Value = u.operating_system_id.ToString() });
+                    new SelectListItem { Text = u.operating_system_name.ToString(), Value = u.operating_system_id.ToString() });
 
                 return View(phoneSpecification_obj);
             }
