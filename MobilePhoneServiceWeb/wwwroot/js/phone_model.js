@@ -27,11 +27,6 @@ function loadDataTable() {
             },
             {
                 data: 'specification_id',
-                "render": function (data) {
-                    return `<div class="pt-2 container-fluid center-grid" role="group">
-                        <a href="/phonemodel/specificationview/${data}" class="btn btn-outline-info mx-2 btn-block form-control"><i class="bi bi-arrow-up-right"></i></a>
-                    </div>`
-                },
                 "width": "15%"
             },
             {
