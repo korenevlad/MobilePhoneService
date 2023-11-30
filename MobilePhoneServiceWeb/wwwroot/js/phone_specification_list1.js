@@ -86,8 +86,14 @@ function Delete(url) {
                 url: url,
                 type: 'DELETE',
                 success: function (data) {
-                    dataTable.ajax.reload();
-                    toastr.success(data.message);
+                    if (data.success == true) {
+                        dataTable.ajax.reload();
+                        toastr["success"](data.message);
+                    }
+                    else {
+                        dataTable.ajax.reload();
+                        toastr["error"](data.message);
+                    }
                 }
             })
         }

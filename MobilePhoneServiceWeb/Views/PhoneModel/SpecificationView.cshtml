@@ -1,0 +1,73 @@
+﻿@model Phone_specification
+
+<div class="card shadow border-0 mt-5">
+    <div class="card-header bg-primary bg-gradient ml-0 py-2">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-white py-2">Спецификации</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="row pb-4">
+            <div class="ms-3 col-6 text-start">
+                <a asp-controller="PhoneModel" asp-action="Index" class="btn btn-outline-danger">
+                    <i class="bi bi-box-arrow-in-left"></i> &nbsp; Назад
+                </a>
+            </div>
+        </div>
+        <div class="row mx-auto mt-2 mb-2">
+            <div class="col-lg-4 text-center">
+                <div class="bs-component">
+                    <ul class="list-group">
+                        <li class="mb-3 list-group-item list-group-item-primary d-flex justify-content-between align-items-center">
+                            Оперативная память
+                            <span class="badge bg-primary rounded-pill">@Model.ram &nbsp&nbspГБ</span>
+                        </li>
+                        <li class="mb-3 list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                            Внутренняя память
+                            <span class="badge bg-primary rounded-pill">@Model.internal_memory &nbsp&nbspГБ</span>
+                        </li>
+                        <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+                            Размер экрана
+                            <span class="badge bg-primary rounded-pill">@Model.screen_size &nbsp&nbspДм</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="bs-component">
+                    <ul class="list-group">
+                        <li class="mb-3 mt-4 list-group-item list-group-item-primary d-flex justify-content-between align-items-center">
+                            Операционная система
+                            <span class="badge bg-primary rounded-pill">@Model.Operating_system_of_specification.operating_system_name</span>
+                        </li>
+                        <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                            Версия операционной системы
+                            <span class="badge bg-primary rounded-pill">@Model.Operating_system_of_specification.operating_system_version</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="bs-component">
+                    <ul class="list-group">
+                        <li class="mb-3 list-group-item list-group-item-primary d-flex justify-content-between align-items-center">
+                            Процессор
+                            <span class="badge bg-primary rounded-pill">@Model.Cpu_of_specification.model</span>
+                        </li>
+                        <li class="mb-3 list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                            Количество ядер процессора
+                            <span class="badge bg-primary rounded-pill">@Model.Cpu_of_specification.amount_cernels</span>
+                        </li>
+                        <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+                            Частота процессора
+                            <span class="badge bg-primary rounded-pill">@Model.Cpu_of_specification.frequency</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

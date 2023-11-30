@@ -79,7 +79,9 @@ namespace MobilePhoneServiceWeb.Controllers
 
         public IActionResult SpecificationView(int? specification_id)
         {
-            return View();
+            Phone_specification phone_specificationObj = _unitOfWork.PhoneSpecification.Get(u => u.specification_id == specification_id, 
+                includeProperties: "Cpu_of_specification,Operating_system_of_specification");
+            return View(phone_specificationObj);
         }
 
 
@@ -107,7 +109,7 @@ namespace MobilePhoneServiceWeb.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", new { infoError = "Удаление невозможно! Есть заявки на ремнот, у которых есть данная модель телефона!" });
+                return Json(new { success = false, message = "Удаление невозможно! <br> Есть заявки на ремонт, в которых указан данный мобильный телефон!" });
             }
         }
 

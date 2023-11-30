@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MobilePhoneService.DataAccess.Repository.IRepository;
 using MobilePhoneService.Models;
+using MySqlConnector;
 
 namespace MobilePhoneServiceWeb.Controllers
 {
@@ -69,18 +71,17 @@ namespace MobilePhoneServiceWeb.Controllers
             var obj = _unitOfWork.Cpu.Get(u => u.cpu_id == id);
             if (obj == null)
             {
-                return Json(new { succes = false, message = "Ошибка при удалении процессора!" });
+                return Json(new { success = false, message = "Ошибка при удалении процессора!" });
             }
             try
             {
                 _unitOfWork.Cpu.Remove(obj);
                 _unitOfWork.Save();
-                return Json(new { succes = true, message = "Процессор удален успешно!" });
-
+                return Json(new { success = true, message = "Процессор удалён успешно!" });
             }
             catch
             {
-                return Json(new { success = false, message = "Удаление невозможно! Есть спецификации телефонов, у которых есть данный процессор!" });
+                return Json(new { success = false, message = "Удаление невозможно! <br> Есть спецификации телефонов, у которых есть данный процессор!" });
             }
         }
 

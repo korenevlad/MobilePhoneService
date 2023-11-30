@@ -27,6 +27,11 @@ function loadDataTable() {
             },
             {
                 data: 'specification_id',
+                "render": function (data) {
+                    return `<div class="pt-2 container-fluid center-grid" role="group">
+                        <a href="/phonemodel/specificationview?specification_id=${data}" class="btn btn-outline-info mx-2 btn-block form-control"><i class="bi bi-arrow-up-right"></i></a>
+                    </div>`
+                },
                 "width": "15%"
             },
             {
@@ -68,8 +73,14 @@ function Delete(url) {
                 url: url,
                 type: 'DELETE',
                 success: function (data) {
-                    dataTable.ajax.reload();
-                    toastr.success(data.message);
+                    if (data.success == true) {
+                        dataTable.ajax.reload();
+                        toastr["success"](data.message);
+                    }
+                    else {
+                        dataTable.ajax.reload();
+                        toastr["error"](data.message);
+                    }
                 }
             })
         }

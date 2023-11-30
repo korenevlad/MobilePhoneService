@@ -102,7 +102,7 @@ namespace MobilePhoneServiceWeb.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", new { infoError = "Удаление невозможно! Есть модели телефонов, у которых есть данная спецификация!" });
+                return Json(new { success = false, message = "Удаление невозможно! <br> Есть модели телефонов, у которых есть данный раздел спецификаций!" });
             }
         }
 
