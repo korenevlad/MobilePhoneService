@@ -67,7 +67,7 @@ namespace MobilePhoneServiceWeb.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(int id)
         {
             var obj = _unitOfWork.Manufacturer.Get(u => u.manufacturer_id == id);
             if (obj == null)

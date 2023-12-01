@@ -56,14 +56,8 @@ namespace MobilePhoneServiceWeb.Controllers
         }
 
 
-        #region API CALLS
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            List<Cpu> cpuList = _unitOfWork.Cpu.GetAll().ToList();
-            return Json(new { data = cpuList });
-        }
+        #region API CALLS
 
         [HttpDelete]
         public IActionResult Delete(int? id)
@@ -84,7 +78,6 @@ namespace MobilePhoneServiceWeb.Controllers
                 return Json(new { success = false, message = "Удаление невозможно! <br> Есть спецификации телефонов, у которых есть данный процессор!" });
             }
         }
-
 
         #endregion
     }
