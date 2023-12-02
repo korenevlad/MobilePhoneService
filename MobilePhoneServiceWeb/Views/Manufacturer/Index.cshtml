@@ -19,15 +19,41 @@
                 </a>
             </div>
         </div>
-        <table id="tblDataManufacturer" class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Название</th>
-                    <th>Страна</th>
-                    <th></th>
+                    <th style="width: 10%;">Id</th>
+                    <th style="width: 30%;">Название</th>
+                    <th style="width: 30%;">Страна</th>
+                    <th style="width: 30%;"></th>
                 </tr>
             </thead>
+
+
+            <tbody>
+                @foreach (var item in Model.OrderBy(u => u.manufacturer_id))
+                {
+                    <tr>
+                        <td style="width: 10%;">@item.manufacturer_id</td>
+                        <td style="width: 30%;">@item.manufacturer_name</td>
+                        <td style="width: 30%;">@item.country</td>
+                        <td style="width: 30%;">
+                            <div class="w-75 btn-group" role="group">
+
+                                <a asp-controller="Manufacturer" asp-action="Upsert" asp-route-id="@item.manufacturer_id"
+                                   class="btn btn-primary form-control mx-2"><i class="bi bi-pencil-fill"></i> &nbsp; Обновить</a>
+
+                                <button class="delete-button btn btn-danger form-control" data-id="@item.manufacturer_id">
+                                    <i class="bi bi-trash3"></i> &nbsp;Удалить
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
         </table>
     </div>
 

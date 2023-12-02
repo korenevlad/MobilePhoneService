@@ -22,15 +22,15 @@ namespace MobilePhoneServiceWeb.Controllers
             return View(manufacturer);
         }
 
-        public IActionResult Upsert(int? manufacturer_id)
+        public IActionResult Upsert(int? id)
         {
-            if (manufacturer_id == null || manufacturer_id == 0) //Добавление нового производителя
+            if (id == null || id == 0) //Добавление нового производителя
             {
                 return View(new Manufacturer());
             }
             else //Обновление существующего производителя
             {
-                Manufacturer findedManufacturer = _unitOfWork.Manufacturer.Get(u => u.manufacturer_id == manufacturer_id);
+                Manufacturer findedManufacturer = _unitOfWork.Manufacturer.Get(u => u.manufacturer_id == id);
                 return View(findedManufacturer);
             }
         }
@@ -59,12 +59,6 @@ namespace MobilePhoneServiceWeb.Controllers
 
         #region API CALLS
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            List<Manufacturer> manufacturerList = _unitOfWork.Manufacturer.GetAll().ToList();
-            return Json(new { data = manufacturerList });
-        }
 
         [HttpDelete]
         public IActionResult Delete(int id)

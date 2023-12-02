@@ -21,7 +21,7 @@ namespace MobilePhoneServiceWeb.Controllers
         }
 
 
-        public IActionResult Upsert(int? specification_id)
+        public IActionResult Upsert(int? id)
         {
             IEnumerable<SelectListItem> listItemCpu = _unitOfWork.Cpu.GetAll().Select(u =>
                 new SelectListItem { Text = u.model.ToString(), Value = u.cpu_id.ToString() });
@@ -36,13 +36,13 @@ namespace MobilePhoneServiceWeb.Controllers
                 OpearatingSystemList = listItemOS
             };
 
-            if (specification_id == null || specification_id == 0)
+            if (id == null || id == 0)
             {
                 return View(phoneSpecification_obj);
             }
             else
             {
-                phoneSpecification_obj.PhoneSpecification = _unitOfWork.PhoneSpecification.Get(u => u.specification_id == specification_id);
+                phoneSpecification_obj.PhoneSpecification = _unitOfWork.PhoneSpecification.Get(u => u.specification_id == id);
                 return View(phoneSpecification_obj);
             }
         }
@@ -79,12 +79,6 @@ namespace MobilePhoneServiceWeb.Controllers
 
 
         #region API CALLS
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            List<Phone_specification> phoneSpecificationList = _unitOfWork.PhoneSpecification.GetAll(includeProperties: "Cpu_of_specification,Operating_system_of_specification").ToList();
-            return Json(new { data = phoneSpecificationList });
-        }
 
         [HttpDelete]
         public IActionResult Delete(int? id)

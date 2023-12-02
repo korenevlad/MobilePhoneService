@@ -22,15 +22,15 @@ namespace MobilePhoneServiceWeb.Controllers
             return View(operatingSystems);
         }
 
-        public IActionResult Upsert(int? operating_system_id)
+        public IActionResult Upsert(int? id)
         {
-            if (operating_system_id == null || operating_system_id == 0) //Добавление нового производителя
+            if (id == null || id == 0) //Добавление нового производителя
             {
                 return View(new Operating_system());
             }
             else //Обновление существующего производителя
             {
-                Operating_system findedOperatingSystem = _unitOfWork.OperatingSystem.Get(u => u.operating_system_id == operating_system_id);
+                Operating_system findedOperatingSystem = _unitOfWork.OperatingSystem.Get(u => u.operating_system_id == id);
                 return View(findedOperatingSystem);
             }
         }
@@ -58,13 +58,6 @@ namespace MobilePhoneServiceWeb.Controllers
 
 
         #region API CALLS
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            List<Operating_system> operatingSystemList = _unitOfWork.OperatingSystem.GetAll().ToList();
-            return Json(new { data = operatingSystemList });
-        }
 
         [HttpDelete]
         public IActionResult Delete(int? id)

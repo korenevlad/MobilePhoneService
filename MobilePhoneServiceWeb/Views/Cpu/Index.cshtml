@@ -22,22 +22,22 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Название</th>
-                    <th>Количество ядер</th>
-                    <th>Частота</th>
-                    <th></th>
+                    <th style="width: 10%;">Id</th>
+                    <th style="width: 20%;">Название</th>
+                    <th style="width: 20%;">Количество ядер</th>
+                    <th style="width: 20%;">Частота</th>
+                    <th style="width: 30%;"></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in Model)
+                @foreach (var item in Model.OrderBy(u => u.cpu_id))
                 {
                     <tr>
-                        <td>@item.cpu_id</td>
-                        <td>@item.model</td>
-                        <td>@item.amount_cernels</td>
-                        <td>@item.frequency</td>
-                        <td>
+                        <td style="width: 10%;">@item.cpu_id</td>
+                        <td style="width: 20%;">@item.model</td>
+                        <td style="width: 20%;">@item.amount_cernels</td>
+                        <td style="width: 20%;">@item.frequency</td>
+                        <td style="width: 30%;">
                             <div class="w-75 btn-group" role="group">
 
                                 <a asp-controller="Cpu" asp-action="Upsert" asp-route-cpu_id="@item.cpu_id" 

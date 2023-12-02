@@ -24,12 +24,12 @@
                 $.ajax({
                     url: "/Cpu/Delete/" + itemId,
                     type: 'DELETE',
-                    success: function (data) {
+                    success: async function (data) {
                         if (data.success === true) {
                             toastr["success"](data.message);
                             setTimeout(function () {
                                 location.reload();
-                            }, 1000);
+                            }, 1000); 
                         }
                         else {
                             toastr["error"](data.message);

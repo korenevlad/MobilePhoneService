@@ -21,7 +21,7 @@ namespace MobilePhoneServiceWeb.Controllers
         }
 
 
-        public IActionResult Upsert(int? model_id)
+        public IActionResult Upsert(int? id)
         {
             IEnumerable<SelectListItem> listItemManufacturer = _unitOfWork.Manufacturer.GetAll().Select(u =>
                 new SelectListItem { Text = u.manufacturer_name.ToString(), Value = u.manufacturer_id.ToString() });
@@ -36,13 +36,13 @@ namespace MobilePhoneServiceWeb.Controllers
                 SpecificationList = listItemSpecification
             };
 
-            if (model_id == null || model_id == 0)
+            if (id == null || id == 0)
             {
                 return View(phoneModel_obj);
             }
             else
             {
-                phoneModel_obj.phoneModel = _unitOfWork.PhoneModel.Get(u => u.model_id == model_id);
+                phoneModel_obj.phoneModel = _unitOfWork.PhoneModel.Get(u => u.model_id == id);
                 return View(phoneModel_obj);
             }
         }
@@ -86,12 +86,6 @@ namespace MobilePhoneServiceWeb.Controllers
 
 
         #region API CALLS
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            List<Phone_model> phoneModelList = _unitOfWork.PhoneModel.GetAll(includeProperties: "Manufacturer_of_phone_model,Phone_Specification_of_phone_model").ToList();
-            return Json(new { data = phoneModelList });
-        }
 
         [HttpDelete]
         public IActionResult Delete(int? id)
