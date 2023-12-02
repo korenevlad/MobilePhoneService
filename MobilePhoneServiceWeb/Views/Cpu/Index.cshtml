@@ -1,4 +1,4 @@
-﻿@model List<Cpu>
+﻿@model CpuSearch
 
 <div class="card shadow border-0 mt-5">
     <div class="card-header bg-primary bg-gradient ml-0 py-2">
@@ -11,14 +11,51 @@
 
     <div class="card-body p-4">
         <div class="row pb-4">
-            <div class="col-6">
+            <div class="col-9">
+                <form method="post">
+                    <div class="container-fluid center-grid">
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <label asp-for="objCpuForSearch.cpu_id_EoS" class="form-label">Id:</label>
+                                <input asp-for="objCpuForSearch.cpu_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="objCpuForSearch.model_EoS" class="form-label">Название:</label>
+                                <input asp-for="objCpuForSearch.model_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="objCpuForSearch.frequency_EoS" class="form-label">Частота:</label>
+                                <input asp-for="objCpuForSearch.frequency_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                        </div>
+
+                        <div class ="row mt-4">
+                            <div class="col-4">
+                                <label asp-for="objCpuForSearch.amount_cernels_EoS" class="form-label">Количество ядер:</label>
+                                <input asp-for="objCpuForSearch.amount_cernels_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+
+                            <div class="col-6"></div>
+
+                            <div class="col-2 pt-4 text-end">
+                                <button type="submit" class="btn btn btn-primary border form-control">
+                                    <i class="bi bi-search"></i>&nbsp; Поиск
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
             </div>
-            <div class="col-6 text-end">
+
+            <div class="col-3 text-center mt-4">
                 <a asp-controller="Cpu" asp-action="Upsert" class="btn btn-primary">
                     <i class="bi bi-plus-circle"></i> &nbsp; Добавить новый процессор
                 </a>
             </div>
         </div>
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -30,7 +67,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.OrderBy(u => u.cpu_id))
+                @foreach (var item in Model.listOfCpu.OrderBy(u => u.cpu_id))
                 {
                     <tr>
                         <td style="width: 10%;">@item.cpu_id</td>
