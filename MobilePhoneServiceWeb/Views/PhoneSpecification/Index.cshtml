@@ -1,4 +1,4 @@
-﻿@model List<Phone_specification>
+﻿@model PhoneSpecificationSearch
 
 <div class="card shadow border-0 mt-5">
     <div class="card-header bg-primary bg-gradient ml-0 py-2">
@@ -11,14 +11,72 @@
 
     <div class="card-body p-4">
         <div class="row pb-4">
-            <div class="col-6">
+            <div class="col-9">
+                <form method="post">
+                    <div class="container-fluid center-grid">
+
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.specification_id_EoS" class="form-label ms-2">Id:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.specification_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.ram_EoS" class="form-label ms-2">RAM:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.ram_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.internal_memory_EoS" class="form-label ms-2">Внутренняя память:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.internal_memory_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.screen_size_EoS" class="form-label ms-2">Размер экрана:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.screen_size_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.cpu_name_EoS" class="form-label ms-2">Процессор:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.cpu_name_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.cpu_amount_cernels_EoS" class="form-label ms-2">Количество ядер:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.cpu_amount_cernels_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.cpu_freq_EoS" class="form-label ms-2">Частота процессора:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.cpu_freq_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.operating_system_name_EoS" class="form-label ms-2">ОС:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.operating_system_name_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-3">
+                                <label asp-for="obj_PhoneSpecification_ForSearch.operating_system_version_EoS" class="form-label ms-2">Версия ОС:</label>
+                                <input asp-for="obj_PhoneSpecification_ForSearch.operating_system_version_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-7 ">
+                            </div>
+                            <div class="col-2 pt-4 text-end">
+                                <button type="submit" class="btn btn btn-primary border form-control">
+                                    <i class="bi bi-search"></i>&nbsp; Поиск
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-6 text-end">
+
+            <div class="col-3 text-end">
                 <a asp-controller="PhoneSpecification" asp-action="Upsert" class="btn btn-primary">
                     <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую спецификацию
                 </a>
             </div>
         </div>
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -26,7 +84,7 @@
                     <th style="width: 8%;">RAM</th>
                     <th style="width: 8%;">Внутренняя память</th>
                     <th style="width: 8%;">Размер экрана</th>
-                    <th style="width: 8%;">Название процессора</th>
+                    <th style="width: 8%;">Процессор</th>
                     <th style="width: 8%;">Количество ядер</th>
                     <th style="width: 8%;">Частота процессора</th>
                     <th style="width: 8%;">ОС</th>
@@ -37,7 +95,7 @@
 
 
             <tbody>
-                @foreach (var item in Model.OrderBy(u => u.specification_id))
+                @foreach (var item in Model.listOf_PhoneSpecification.OrderBy(u => u.specification_id))
                 {
                     <tr>
                         <td style="width: 7%;">@item.specification_id</td>

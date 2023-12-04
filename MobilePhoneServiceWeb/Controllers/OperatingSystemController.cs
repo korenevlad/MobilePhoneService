@@ -31,18 +31,24 @@ namespace MobilePhoneServiceWeb.Controllers
         public IActionResult Index(OperatingSystemSearch searchObj)
         {
             IEnumerable<Operating_system> query = _unitOfWork.OperatingSystem.GetAll();
+
             if (!string.IsNullOrEmpty(searchObj.objOperatingSystemForSearch.operating_system_id_EoS))
             {
-                query = query.Where(c => c.operating_system_id.ToString().Contains(searchObj.objOperatingSystemForSearch.operating_system_id_EoS));
+                int.TryParse(searchObj.objOperatingSystemForSearch.operating_system_id_EoS, out int OperSystId);
+                query = query.Where(c => c.operating_system_id == OperSystId);
             }
+
             if (!string.IsNullOrEmpty(searchObj.objOperatingSystemForSearch.operating_system_name_EoS))
             {
                 query = query.Where(c => c.operating_system_name.Contains(searchObj.objOperatingSystemForSearch.operating_system_name_EoS));
             }
+
             if (!string.IsNullOrEmpty(searchObj.objOperatingSystemForSearch.operating_system_version_EoS))
             {
-                query = query.Where(c => c.operating_system_version.ToString().Contains(searchObj.objOperatingSystemForSearch.operating_system_version_EoS));
+                int.TryParse(searchObj.objOperatingSystemForSearch.operating_system_version_EoS, out int OperSystVersion);
+                query = query.Where(c => c.operating_system_version == OperSystVersion);
             }
+
             searchObj.listOfOperatingSystem = query.ToList();
 
             return View(searchObj);

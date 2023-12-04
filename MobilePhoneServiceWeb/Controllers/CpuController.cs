@@ -4,6 +4,7 @@ using MobilePhoneService.DataAccess.Repository.IRepository;
 using MobilePhoneService.Models;
 using MobilePhoneService.Models.Search;
 using MySqlConnector;
+using System;
 
 namespace MobilePhoneServiceWeb.Controllers
 {
@@ -30,9 +31,11 @@ namespace MobilePhoneServiceWeb.Controllers
         public IActionResult Index(CpuSearch searchObj)
         {
             IEnumerable<Cpu> query = _unitOfWork.Cpu.GetAll();
+
             if (!string.IsNullOrEmpty(searchObj.objCpuForSearch.cpu_id_EoS))
             {
-                query = query.Where(c => c.cpu_id.ToString().Contains(searchObj.objCpuForSearch.cpu_id_EoS));
+                int.TryParse(searchObj.objCpuForSearch.cpu_id_EoS, out int cpuId);
+                query = query.Where(c => c.cpu_id == cpuId);
             }
             if (!string.IsNullOrEmpty(searchObj.objCpuForSearch.model_EoS))
             {
@@ -40,11 +43,13 @@ namespace MobilePhoneServiceWeb.Controllers
             }
             if (!string.IsNullOrEmpty(searchObj.objCpuForSearch.frequency_EoS))
             {
-                query = query.Where(c => c.frequency.ToString().Contains(searchObj.objCpuForSearch.frequency_EoS));
+                int.TryParse(searchObj.objCpuForSearch.frequency_EoS, out int cpuFrequency);
+                query = query.Where(c => c.frequency == cpuFrequency);
             }
             if (!string.IsNullOrEmpty(searchObj.objCpuForSearch.amount_cernels_EoS))
             {
-                query = query.Where(c => c.amount_cernels.ToString().Contains(searchObj.objCpuForSearch.amount_cernels_EoS));
+                int.TryParse(searchObj.objCpuForSearch.amount_cernels_EoS, out int cpuAmount_cernels);
+                query = query.Where(c => c.amount_cernels == cpuAmount_cernels);
             }
 
             searchObj.listOfCpu = query.ToList();
