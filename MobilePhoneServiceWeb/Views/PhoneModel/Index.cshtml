@@ -1,4 +1,4 @@
-﻿@model List<Phone_model>
+﻿@model PhoneModelSearch
 
 <div class="card shadow border-0 mt-5">
     <div class="card-header bg-primary bg-gradient ml-0 py-2">
@@ -11,14 +11,52 @@
 
     <div class="card-body p-4">
         <div class="row pb-4">
-            <div class="col-6">
+            <div class="col-8">
+                <form method="post">
+                    <div class="container-fluid center-grid">
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <label asp-for="obj_PhoneModel_ForSearch.model_id_EoS" class="form-label ms-2">Id:</label>
+                                <input asp-for="obj_PhoneModel_ForSearch.model_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="obj_PhoneModel_ForSearch.manufacturer_name_EoS" class="form-label ms-2">Производитель:</label>
+                                <input asp-for="obj_PhoneModel_ForSearch.manufacturer_name_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="obj_PhoneModel_ForSearch.name_EoS" class="form-label ms-2">Название:</label>
+                                <input asp-for="obj_PhoneModel_ForSearch.name_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <label asp-for="obj_PhoneModel_ForSearch.year_of_release_EoS" class="form-label ms-2">Год выпуска:</label>
+                                <input asp-for="obj_PhoneModel_ForSearch.year_of_release_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="obj_PhoneModel_ForSearch.country_EoS" class="form-label ms-2">Страна:</label>
+                                <input asp-for="obj_PhoneModel_ForSearch.country_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-2 ">
+                            </div>
+                            <div class="col-2 pt-4 text-end">
+                                <button type="submit" class="btn btn btn-outline-info border-1 form-control">
+                                    <strong><i class="bi bi-search"></i>&nbsp; Поиск</strong>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-6 text-end">
+
+            <div class="col-4 text-end text-center mt-4">
                 <a asp-controller="PhoneModel" asp-action="Upsert" class="btn btn-primary">
                     <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую модель телефона
                 </a>
             </div>
         </div>
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -33,7 +71,7 @@
             </thead>
 
             <tbody>
-                @foreach (var item in Model.OrderBy(u => u.model_id))
+                @foreach (var item in Model.listOf_PhoneModel.OrderBy(u => u.model_id))
                 {
                     <tr>
                         <td style="width: 5%;">@item.model_id</td>

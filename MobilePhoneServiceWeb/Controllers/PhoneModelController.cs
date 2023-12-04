@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MobilePhoneService.DataAccess.Repository.IRepository;
 using MobilePhoneService.Models;
+using MobilePhoneService.Models.Search;
 using MobilePhoneService.Models.ViewModel;
 
 namespace MobilePhoneServiceWeb.Controllers
@@ -14,10 +15,51 @@ namespace MobilePhoneServiceWeb.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+
         public IActionResult Index()
         {
-            List<Phone_model> phoneModelList = _unitOfWork.PhoneModel.GetAll(includeProperties: "Manufacturer_of_phone_model,Phone_Specification_of_phone_model").ToList();
-            return View(phoneModelList);
+            PhoneModelSearch phoneModelSearch = new PhoneModelSearch
+            {
+                obj_PhoneModel_ForSearch = null,
+                listOf_PhoneModel = _unitOfWork.PhoneModel.GetAll(includeProperties: "Manufacturer_of_phone_model,Phone_Specification_of_phone_model").ToList()
+            };
+            return View(phoneModelSearch);
+        }
+
+
+        [HttpPost]
+        public IActionResult Index(PhoneModelSearch searchObj)
+        {
+            IEnumerable<Phone_model> query = _unitOfWork.PhoneModel.GetAll(includeProperties: "Manufacturer_of_phone_model,Phone_Specification_of_phone_model");
+
+            if (!string.IsNullOrEmpty(searchObj.obj_PhoneModel_ForSearch.model_id_EoS))
+            {
+                int.TryParse(searchObj.obj_PhoneModel_ForSearch.model_id_EoS, out int modelId);
+                query = query.Where(c => c.model_id == modelId);
+            }
+            if (!string.IsNullOrEmpty(searchObj.obj_PhoneModel_ForSearch.manufacturer_name_EoS))
+            {
+                query = query.Where(c => c.Manufacturer_of_phone_model.manufacturer_name.Contains(searchObj.obj_PhoneModel_ForSearch.manufacturer_name_EoS));
+            }
+            if (!string.IsNullOrEmpty(searchObj.obj_PhoneModel_ForSearch.name_EoS))
+            {
+                query = query.Where(c => c.name.Contains(searchObj.obj_PhoneModel_ForSearch.name_EoS));
+            }
+            if (!string.IsNullOrEmpty(searchObj.obj_PhoneModel_ForSearch.year_of_release_EoS))
+            {
+                int.TryParse(searchObj.obj_PhoneModel_ForSearch.year_of_release_EoS, out int modelYear);
+                query = query.Where(c => c.year_of_release == modelYear);
+            }
+            if (!string.IsNullOrEmpty(searchObj.obj_PhoneModel_ForSearch.country_EoS))
+            {
+                query = query.Where(c => c.Manufacturer_of_phone_model.country.Contains(searchObj.obj_PhoneModel_ForSearch.country_EoS));
+            }
+
+
+            searchObj.listOf_PhoneModel = query.ToList();
+
+            return View(searchObj);
         }
 
 

@@ -53,7 +53,7 @@
                             </div>
                         </div>
 
-                        <div class="row mt-4">
+                        <div class="row">
                             <div class="col-3">
                                 <label asp-for="obj_PhoneSpecification_ForSearch.operating_system_version_EoS" class="form-label ms-2">Версия ОС:</label>
                                 <input asp-for="obj_PhoneSpecification_ForSearch.operating_system_version_EoS" autocomplete="off" class="form-control border-1 shadow" />
@@ -61,8 +61,8 @@
                             <div class="col-7 ">
                             </div>
                             <div class="col-2 pt-4 text-end">
-                                <button type="submit" class="btn btn btn-primary border form-control">
-                                    <i class="bi bi-search"></i>&nbsp; Поиск
+                                <button type="submit" class="btn btn btn-outline-info border-1 form-control">
+                                    <strong><i class="bi bi-search"></i>&nbsp; Поиск</strong>
                                 </button>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                 </form>
             </div>
 
-            <div class="col-3 text-end">
+            <div class="col-3 text-center text-end mt-4">
                 <a asp-controller="PhoneSpecification" asp-action="Upsert" class="btn btn-primary">
                     <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую спецификацию
                 </a>
