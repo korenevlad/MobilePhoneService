@@ -1,67 +1,59 @@
-﻿<dvi class="col-8">
-    <h3 class="text-black text-opacity-25 text-center pt-5">Н&nbsp;&nbsp;А&nbsp;&nbsp;В&nbsp;&nbsp;И&nbsp;&nbsp;Г&nbsp;&nbsp;А&nbsp;&nbsp;Ц&nbsp;&nbsp;И&nbsp;&nbsp;Я</h3>
-</dvi>
-<dvi class="col-2">
-</dvi>
+﻿<div class="pt-4">
+    <dvi class="col-8">
+        <h3 class="text-black text-opacity-25 text-center pt-5">Н&nbsp;&nbsp;А&nbsp;&nbsp;В&nbsp;&nbsp;И&nbsp;&nbsp;Г&nbsp;&nbsp;А&nbsp;&nbsp;Ц&nbsp;&nbsp;И&nbsp;&nbsp;Я</h3>
+    </dvi>
 
-<div class="container-fluid center-grid">
-    <div class="row mx-auto mt-5 mb-5">
-        <div class="col-lg-3 text-center">
-            <a asp-controller="Manufacturer" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
-                <i class="bi bi-gear"></i>&nbsp&nbspПроизводители
-            </a>
+    <div class="container-fluid center-grid">
+        <div class="row mx-auto mt-5 mb-5">
+            <div class="col-lg-4 text-center">
+                <a asp-controller="Manufacturer" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
+                    <i class="bi bi-gear"></i>&nbsp&nbspПроизводители
+                </a>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <a asp-controller="PhoneModel" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
+                    <i class="bi bi-phone"></i>&nbsp&nbspМодели телефонов
+                </a>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <a asp-controller="OperatingSystem" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
+                    <i class="bi bi-gear-wide-connected"></i></i>&nbsp&nbspОперационные системы
+                </a>
+            </div>
         </div>
 
-        <div class="col-lg-3 text-center">
-            <a asp-controller="PhoneModel" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
-                <i class="bi bi-phone"></i>&nbsp&nbspМодели телефонов
-            </a>
+        <div class="row mx-auto mt-5 mb-5">
+            <div class="col-lg-4 text-center">
+                <a asp-controller="Cpu" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
+                    <i class="bi bi-cpu"></i>&nbsp&nbspПроцессоры
+                </a>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <a asp-controller="PhoneSpecification" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
+                    <i class="bi bi-card-checklist"></i>&nbsp&nbspСпецификации
+                </a>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-question-diamond"></i>&nbsp&nbspЗаявки на ремонт</button>
+            </div>
         </div>
 
-        <div class="col-lg-3 text-center">
-            <a asp-controller="OperatingSystem" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
-                <i class="bi bi-gear-wide-connected"></i></i>&nbsp&nbspОперационные системы
-            </a>
-        </div>
+        <div class="row mx-auto text-center">
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-clock-history"></i>&nbsp&nbspИстории заявок</button>
+            </div>
 
-        <div class="col-lg-3 text-center">
-            <a asp-controller="Cpu" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
-                <i class="bi bi-cpu"></i>&nbsp&nbspПроцессоры
-            </a>
-        </div>
-    </div>
+            <div class="col-lg-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-person-check"></i>&nbsp&nbspКлиенты</button>
+            </div>
 
-    <div class="row mx-auto mt-5 mb-5">
-        <div class="col-lg-3 text-center">
-            <a asp-controller="PhoneSpecification" asp-action="Index" class="btn btn-primary btn-lg btn-block form-control">
-                <i class="bi bi-card-checklist"></i>&nbsp&nbspСпецификации
-            </a>
-        </div>
-
-        <div class="col-lg-3 text-center">
-            <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-question-diamond"></i>&nbsp&nbspЗаявки на ремонт</button>
-        </div>
-
-        <div class="col-lg-3 text-center">
-            <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-clock-history"></i>&nbsp&nbspИстории заявок</button>
-        </div>
-
-        <div class="col-lg-3 text-center">
-            <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-person-check"></i>&nbsp&nbspКлиенты</button>
-        </div>
-    </div>
-
-    <div class="row mx-auto text-center">
-        <div class="col-lg-4">
-            <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-book"></i> &nbsp&nbspУслуги по ремонту</button>
-        </div>
-
-        <div class="col-lg-4 text-center">
-            <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-person-gear"></i>&nbsp&nbspСпециалисты</button>
-        </div>
-
-        <div class="col-lg-4 text-center">
-            <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-tools"></i>&nbsp&nbspСервисные центры</button>
+            <div class="col-lg-4">
+                <button type="button" class="btn btn-primary btn-lg btn-block form-control"><i class="bi bi-book"></i> &nbsp&nbspУслуги по ремонту</button>
+            </div>
         </div>
     </div>
 </div>

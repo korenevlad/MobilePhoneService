@@ -1,4 +1,4 @@
-﻿@model List<Operating_system>
+﻿@model OperatingSystemSearch
 
 
 <div class="card shadow border-0 mt-5">
@@ -11,15 +11,47 @@
     </div>
 
     <div class="card-body p-4">
+
         <div class="row pb-4">
-            <div class="col-6">
+            <div class="col-8">
+                <form method="post">
+                    <div class="container-fluid center-grid">
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <label asp-for="objOperatingSystemForSearch.operating_system_id_EoS" class="form-label">Id:</label>
+                                <input asp-for="objOperatingSystemForSearch.operating_system_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="objOperatingSystemForSearch.operating_system_name_EoS" class="form-label">Название:</label>
+                                <input asp-for="objOperatingSystemForSearch.operating_system_name_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="objOperatingSystemForSearch.operating_system_version_EoS" class="form-label">Версия:</label>
+                                <input asp-for="objOperatingSystemForSearch.operating_system_version_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-10"></div>
+
+                            <div class="col-2 text-end">
+                                <button type="submit" class="btn btn btn-primary border form-control">
+                                    <i class="bi bi-search"></i>&nbsp; Поиск
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
             </div>
-            <div class="col-6 text-end">
+            <div class="col-4 text-center mt-4">
                 <a asp-controller="OperatingSystem" asp-action="Upsert" class="btn btn-primary">
                     <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую операционную систему
                 </a>
             </div>
         </div>
+
         <table class="table table1 table-bordered table-striped">
             <thead>
                 <tr>
@@ -31,7 +63,7 @@
             </thead>
 
             <tbody>
-                @foreach (var item in Model.OrderBy(u => u.operating_system_id))
+                @foreach (var item in Model.listOfOperatingSystem.OrderBy(u => u.operating_system_id))
                 {
                     <tr>
                         <td style="width: 10%;">@item.operating_system_id</td>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MobilePhoneService.DataAccess.Repository;
 using MobilePhoneService.DataAccess.Repository.IRepository;
 using MobilePhoneService.Models;
+using MobilePhoneService.Models.Search;
 using System.Diagnostics;
 
 namespace MobilePhoneServiceWeb.Controllers
@@ -18,9 +19,35 @@ namespace MobilePhoneServiceWeb.Controllers
 
         public IActionResult Index()
         {
-            List<Operating_system> operatingSystems = _unitOfWork.OperatingSystem.GetAll().ToList();
-            return View(operatingSystems);
+            OperatingSystemSearch operatingSystemSearch = new OperatingSystemSearch
+            {
+                objOperatingSystemForSearch = null,
+                listOfOperatingSystem = _unitOfWork.OperatingSystem.GetAll().ToList()
+            };
+            return View(operatingSystemSearch);
         }
+
+        [HttpPost]
+        public IActionResult Index(OperatingSystemSearch searchObj)
+        {
+            IEnumerable<Operating_system> query = _unitOfWork.OperatingSystem.GetAll();
+            if (!string.IsNullOrEmpty(searchObj.objOperatingSystemForSearch.operating_system_id_EoS))
+            {
+                query = query.Where(c => c.operating_system_id.ToString().Contains(searchObj.objOperatingSystemForSearch.operating_system_id_EoS));
+            }
+            if (!string.IsNullOrEmpty(searchObj.objOperatingSystemForSearch.operating_system_name_EoS))
+            {
+                query = query.Where(c => c.operating_system_name.Contains(searchObj.objOperatingSystemForSearch.operating_system_name_EoS));
+            }
+            if (!string.IsNullOrEmpty(searchObj.objOperatingSystemForSearch.operating_system_version_EoS))
+            {
+                query = query.Where(c => c.operating_system_version.ToString().Contains(searchObj.objOperatingSystemForSearch.operating_system_version_EoS));
+            }
+            searchObj.listOfOperatingSystem = query.ToList();
+
+            return View(searchObj);
+        }
+
 
         public IActionResult Upsert(int? id)
         {
