@@ -14,7 +14,7 @@ namespace MobilePhoneService.Models
         public int service_id { get; set; }
 
         [Required(ErrorMessage = "Название обязательно для заполнения!")]
-        [DisplayName("Name")]
+        [DisplayName("Description")]
         [MaxLength(50, ErrorMessage = "Название не может превышать 50 символов!")]
         public string description { get; set; }
 

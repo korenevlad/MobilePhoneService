@@ -18,6 +18,7 @@ namespace MobilePhoneService.DataAccess.Repository
         public IPhoneSpecificationRepository PhoneSpecification { get; private set; }
         public IPhoneModelRepository PhoneModel { get; private set; }
         public IServiceRepository Service { get; private set; }
+        public IClientRepository Client { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -28,6 +29,7 @@ namespace MobilePhoneService.DataAccess.Repository
             PhoneSpecification = new PhoneSpecificationRepository(_db);
             PhoneModel = new PhoneModelRepository(_db);
             Service = new ServiceRepository(_db);
+            Client = new ClientRepository(_db);
         }
 
         public void Save()

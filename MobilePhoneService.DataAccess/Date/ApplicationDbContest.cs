@@ -18,5 +18,6 @@ namespace MobilePhoneService.DataAccess.Date
         DbSet<Phone_specification> Phone_Specification { get; set; }
         DbSet<Phone_model> Phone_Model { get; set; }
         DbSet<Service> Service { get; set; }
+        DbSet<Client> Client { get; set; }
     }
 }
