@@ -1,10 +1,10 @@
-﻿@model ManufacturerSearch
+﻿@model ServiceSearch
 
 <div class="card shadow border-0 mt-5">
     <div class="card-header bg-primary bg-gradient ml-0 py-2">
         <div class="row">
             <div class="col-12 text-center">
-                <h3 class="text-white py-2">Производители</h3>
+                <h3 class="text-white py-2">Услуги по ремонту</h3>
             </div>
         </div>
     </div>
@@ -17,16 +17,16 @@
 
                         <div class="row mb-2">
                             <div class="col-4">
-                                <label asp-for="obj_Manufacturer_ForSearch.manufacturer_id_EoS" class="form-label">Id:</label>
-                                <input asp-for="obj_Manufacturer_ForSearch.manufacturer_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                                <label asp-for="objServiceForSearch.service_id_EoS" class="form-label">Id:</label>
+                                <input asp-for="objServiceForSearch.service_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
                             </div>
                             <div class="col-4">
-                                <label asp-for="obj_Manufacturer_ForSearch.manufacturer_name_EoS" class="form-label">Название:</label>
-                                <input asp-for="obj_Manufacturer_ForSearch.manufacturer_name_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                                <label asp-for="objServiceForSearch.name_EoS" class="form-label">Название:</label>
+                                <input asp-for="objServiceForSearch.name_EoS" autocomplete="off" class="form-control border-1 shadow" />
                             </div>
                             <div class="col-4">
-                                <label asp-for="obj_Manufacturer_ForSearch.country_EoS" class="form-label">Страна:</label>
-                                <input asp-for="obj_Manufacturer_ForSearch.country_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                                <label asp-for="objServiceForSearch.price_EoS" class="form-label">Страна:</label>
+                                <input asp-for="objServiceForSearch.price_EoS" autocomplete="off" class="form-control border-1 shadow" />
                             </div>
                         </div>
 
@@ -44,13 +44,11 @@
                 </form>
             </div>
             <div class="col-4 text-center mt-4">
-                <a asp-controller="Manufacturer" asp-action="Upsert" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i> &nbsp; Добавить нового производителя
+                <a asp-controller="Service" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую услугу
                 </a>
             </div>
         </div>
-
-
 
 
         <table class="table table-bordered table-striped">
@@ -58,25 +56,25 @@
                 <tr>
                     <th style="width: 10%;">Id</th>
                     <th style="width: 30%;">Название</th>
-                    <th style="width: 30%;">Страна</th>
+                    <th style="width: 30%;">Цена</th>
                     <th style="width: 30%;"></th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach (var item in Model.listOf_Manufacturer.OrderBy(u => u.manufacturer_id))
+                @foreach (var item in Model.listOfService.OrderBy(u => u.service_id))
                 {
                     <tr>
-                        <td style="width: 10%;">@item.manufacturer_id</td>
-                        <td style="width: 30%;">@item.manufacturer_name</td>
-                        <td style="width: 30%;">@item.country</td>
+                        <td style="width: 10%;">@item.service_id</td>
+                        <td style="width: 30%;">@item.description</td>
+                        <td style="width: 30%;">@item.price</td>
                         <td style="width: 30%;">
                             <div class="w-75 btn-group" role="group">
 
-                                <a asp-controller="Manufacturer" asp-action="Upsert" asp-route-id="@item.manufacturer_id"
+                                <a asp-controller="Service" asp-action="Upsert" asp-route-id="@item.service_id"
                                    class="btn btn-primary form-control mx-2"><i class="bi bi-pencil-fill"></i> &nbsp; Обновить</a>
 
-                                <button class="delete-button btn btn-danger form-control" data-id="@item.manufacturer_id">
+                                <button class="delete-button btn btn-danger form-control" data-id="@item.service_id">
                                     <i class="bi bi-trash3"></i> &nbsp;Удалить
                                 </button>
 
@@ -85,15 +83,11 @@
                     </tr>
                 }
             </tbody>
-
-
         </table>
     </div>
-
-
 </div>
 
 
 @section Scripts{
-    <script src="~/js/manufacturer_list1.js"></script>
+    <script src="~/js/service.js"></script>
 }
