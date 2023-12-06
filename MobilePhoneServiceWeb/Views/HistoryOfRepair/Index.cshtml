@@ -1,0 +1,93 @@
+﻿@model List<History_of_repair>
+
+<div class="card shadow border-0 mt-5">
+    <div class="card-header bg-primary bg-gradient ml-0 py-2">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-white py-2">Истории заявок на ремонт</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="row pb-4">
+            <div class="col-9">
+                <form method="post">
+                    <div class="container-fluid center-grid">
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <!-- тут поля -->
+                            </div>
+                            <div class="col-4">
+                                <!-- тут поля -->
+                            </div>
+                            <div class="col-4">
+                                <!-- тут поля -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <!-- тут поля -->
+                            </div>
+
+                            <div class="col-6"></div>
+
+                            <div class="col-2 pt-4 text-end">
+                                <button type="submit" class="btn btn btn-outline-info border-1 form-control">
+                                    <strong><i class="bi bi-search"></i>&nbsp; Поиск</strong>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">Id заявки</th>
+                    <th style="width: 20%;">Дата и время создания заявки</th>
+                    <th style="width: 10%;">Id истории заявки</th>
+                    <th style="width: 20%;">Дата начала работ</th>
+                    <th style="width: 20%;">Дата конца работ</th>
+                    <th style="width: 20%;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(u => u.history_id))
+                {
+                    <tr>
+                        <td style="width: 10%;">@item.request_id</td>
+                        <td style="width: 20%;">@item.Request_for_repair_of_history_of_repair.datetime_of_request</td>
+                        <td style="width: 10%;">@item.history_id</td>
+                        <td style="width: 20%;">@item.date_start</td>
+                        <td style="width: 20%;">@item.date_end</td>
+                        <td style="width: 20%;">
+                            <div class="w-75 btn-group" role="group">
+
+                                <a asp-controller="HistoryOfRepair" asp-action="Upsert" asp-route-id="@item.history_id"
+                                   class="btn btn-primary form-control mx-2"><i class="bi bi-pencil-fill"></i> &nbsp; Обновить</a>
+
+                                <button class="delete-button btn btn-danger form-control" data-id="@item.history_id">
+                                    <i class="bi bi-trash3"></i> &nbsp;Удалить
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/history_of_repair.js"></script>
+}
+
+
+
