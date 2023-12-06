@@ -1,0 +1,97 @@
+﻿@model List<Request_for_repair>
+
+<div class="card shadow border-0 mt-5">
+    <div class="card-header bg-primary bg-gradient ml-0 py-2">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-white py-2">Заявки на ремонт</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="row pb-4">
+            <div class="col-9">
+                <form method="post">
+                    <div class="container-fluid center-grid">
+
+                        <div class="row mb-2">
+                            <!-- тут поля -->
+                        </div>
+
+                        <div class="row mb-2">
+                            <!-- тут поля -->
+                        </div>
+
+                        <div class="row">
+                            <!-- тут поля -->
+                            <div class="col-7 ">
+                            </div>
+                            <div class="col-2 pt-4 text-end">
+                                <button type="submit" class="btn btn btn-outline-info border-1 form-control">
+                                    <strong><i class="bi bi-search"></i>&nbsp; Поиск</strong>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-3 text-center text-end mt-4">
+                <a asp-controller="RequestForRepair" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую заявку на ремонт
+                </a>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 8%;">Id</th>
+                    <th style="width: 11%;">Дата и время создания</th>
+                    <th style="width: 11%;">Статус</th>
+                    <th style="width: 11%;">Модель телефона</th>
+                    <th style="width: 11%;">Услуга</th>
+                    <th style="width: 11%;">Имя клиента</th>
+                    <th style="width: 12%;">Фамилия клиента</th>
+                    <th style="width: 25%;"></th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                @foreach (var item in Model.OrderBy(u => u.request_id))
+                {
+                    <tr>
+                        <td style="width: 8%;">@item.request_id</td>
+                        <td style="width: 11%;">@item.datetime_of_request</td>
+                        <td style="width: 11%;">@item.status</td>
+                        <td style="width: 11%;">@item.Phone_Model_of_request_for_repair.name</td>
+                        <td style="width: 11%;">@item.Service_of_request_for_repair.description</td>
+                        <td style="width: 11%;">@item.Client_of_request_for_repair.name</td>
+                        <td style="width: 12%;">@item.Client_of_request_for_repair.surname</td>
+                        <td style="width: 25%;">
+                            <div class="w-75 btn-group" role="group">
+
+                                <a asp-controller="RequestForRepair" asp-action="Upsert" asp-route-id="@item.request_id"
+                                   class="btn btn-primary form-control mx-2"><i class="bi bi-pencil-fill"></i> &nbsp; Обновить</a>
+
+                                <button class="delete-button btn btn-danger form-control" data-id="@item.request_id">
+                                    <i class="bi bi-trash3"></i> &nbsp;Удалить
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/request_for_repair.js"></script>
+}

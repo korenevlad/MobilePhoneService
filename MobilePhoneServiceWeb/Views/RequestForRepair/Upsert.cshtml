@@ -1,0 +1,93 @@
+﻿@model RequestForRepairVM
+
+<div class="card shadow border-0 mt-5">
+    <div class="card-header bg-primary bg-gradient ml-0 py-2">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-white py-2"> @(Model.request_for_repair.request_id != 0 ? "Обновление" : "Добавление") заявки на ремонт</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row">
+            <input asp-for="request_for_repair.request_id" hidden />
+            <div class="border p-3">
+                <div asp-validation-summary="All"></div>
+
+                @if (Model.request_for_repair.request_id != 0)
+                {
+                    <div class="py-2 col-12">
+                        <label asp-for="request_for_repair.datetime_of_request" class="form-label ms-2">Дата и время создания</label>
+                        <input asp-for="request_for_repair.datetime_of_request" autocomplete="off" class="form-control border-0 shadow" placeholder="Дата и время создания" readonly />
+                    </div>
+
+                    <div class="py-2 col-12">
+                        <label asp-for="request_for_repair.status" class="form-label ms-2">Статус</label>
+                        <input asp-for="request_for_repair.status" autocomplete="off" class="form-control border-0 shadow" placeholder="Статус" readonly />
+                    </div>
+                }
+
+                <div class="col-12">
+                    <select asp-for="@Model.request_for_repair.model_id" asp-items="@Model.phoneModelList" class="form-select border-0 shadow mt-4">
+                        <option disabled selected>Выбор модели телефона</option>
+                    </select>
+                    <span asp-validation-for="request_for_repair.model_id" class="text-danger mb-4"></span>
+                </div>
+
+                <div class="py-2 col-12">
+                    <select asp-for="@Model.request_for_repair.service_id" asp-items="@Model.servicetList" class="form-select border-0 shadow mt-4">
+                        <option disabled selected>Выбор услуги</option>
+                    </select>
+                    <span asp-validation-for="request_for_repair.service_id" class="text-danger mb-4"></span>
+                </div>
+
+                <div class="py-2 col-12">
+                    <select asp-for="@Model.request_for_repair.client_id" asp-items="@Model.clientList" class="form-select border-0 shadow mt-4">
+                        <option disabled selected>Выбор клиента</option>
+                    </select>
+                    <span asp-validation-for="request_for_repair.client_id" class="text-danger mb-4"></span>
+                </div>
+
+                <div class="row pt-2">
+                    <div class="col-6 col-md-3">
+                        @if (Model.request_for_repair.request_id != 0)
+                        {
+                            <button type="submit" class="btn btn-outline-success border form-control"><i class="bi bi-pencil-fill"></i>&nbsp; Обновить</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-outline-success border form-control"><i class="bi bi-plus-square"></i> &nbsp; Добавить</button>
+                        }
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="RequestForRepair" asp-action="Index" class="btn btn-outline-danger border form-control">
+                            <i class="bi bi-arrow-bar-left"></i> &nbsp;Назад к списку
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+
+
+
+
+
+
+

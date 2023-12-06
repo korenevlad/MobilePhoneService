@@ -15,6 +15,7 @@ namespace MobilePhoneService.DataAccess.Repository.IRepository
         IPhoneModelRepository PhoneModel { get; }
         IServiceRepository Service { get; }
         IClientRepository Client { get; }
+        IRequestForRepairRepository RequestForRepair { get; }
         void Save();
     }
 }

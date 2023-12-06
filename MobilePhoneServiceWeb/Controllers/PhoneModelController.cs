@@ -94,7 +94,7 @@ namespace MobilePhoneServiceWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (phoneModel_obj.phoneModel.specification_id == 0)
+                if (phoneModel_obj.phoneModel.model_id == 0)
                 {
                     _unitOfWork.PhoneModel.Add(phoneModel_obj.phoneModel);
                     TempData["success"] = "Модель телефона добавлена успешно!";
