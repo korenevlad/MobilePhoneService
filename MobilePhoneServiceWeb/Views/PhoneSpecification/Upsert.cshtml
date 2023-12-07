@@ -34,21 +34,33 @@
                     <span asp-validation-for="PhoneSpecification.screen_size" class="text-danger"></span>
                 </div>
 
+                <div class="pt-4"></div>
 
                 <div class="py-2 col-12">
-                    <select asp-for="@Model.PhoneSpecification.cpu_id" asp-items="@Model.CpuList" class="form-select border-0 shadow mt-4">
+                    @if (Model.PhoneSpecification.specification_id != 0)
+                    {
+                        <label asp-for="PhoneSpecification.cpu_id" class="form-label ms-2">Выбор процессора</label>
+                    }
+                    <select asp-for="@Model.PhoneSpecification.cpu_id" asp-items="@Model.CpuList" class="form-select border-0 shadow">
                         <option disabled selected>Выбор процессора</option>
                     </select>
                     <span asp-validation-for="PhoneSpecification.cpu_id" class="text-danger"></span>
                 </div>
 
+                <div class="pt-4"></div>
+
                 <div class="py-2 col-12">
-                    <select asp-for="@Model.PhoneSpecification.operating_system_id" asp-items="@Model.OpearatingSystemList" class="form-select border-0 shadow mt-4">
+                    @if (Model.PhoneSpecification.specification_id != 0)
+                    {
+                        <label asp-for="PhoneSpecification.operating_system_id" class="form-label ms-2">Выбор операционной системы</label>
+                    }
+                    <select asp-for="@Model.PhoneSpecification.operating_system_id" asp-items="@Model.OpearatingSystemList" class="form-select border-0 shadow">
                         <option disabled selected>Выбор операционной системы</option>
                     </select>
                     <span asp-validation-for="PhoneSpecification.operating_system_id" class="text-danger mb-4"></span>
                 </div>
 
+                <div class="pt-4"></div>
 
                 <div class="row pt-2">
                     <div class="col-6 col-md-3">

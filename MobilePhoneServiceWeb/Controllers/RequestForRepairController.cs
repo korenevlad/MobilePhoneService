@@ -33,7 +33,7 @@ namespace MobilePhoneServiceWeb.Controllers
                 new SelectListItem { Text = u.description.ToString(), Value = u.service_id.ToString() });
 
             IEnumerable<SelectListItem> listItemClient = _unitOfWork.Client.GetAll().Select(u =>
-                new SelectListItem { Text = u.surname.ToString(), Value = u.client_id.ToString() });
+                new SelectListItem { Text = u.name.ToString() + " " + u.surname.ToString(), Value = u.client_id.ToString() });
 
             RequestForRepairVM requestForRepair_obj = new RequestForRepairVM
             {
