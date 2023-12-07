@@ -1,4 +1,4 @@
-﻿@model List<Request_for_repair>
+﻿@model RequestForRepairSearch
 
 <div class="card shadow border-0 mt-5">
     <div class="card-header bg-primary bg-gradient ml-0 py-2">
@@ -16,17 +16,41 @@
                     <div class="container-fluid center-grid">
 
                         <div class="row mb-2">
-                            <!-- тут поля -->
+                            <div class="col-4">
+                                <label asp-for="objRequestForRepairForSearch.request_id_EoS" class="form-label ms-2">Id:</label>
+                                <input asp-for="objRequestForRepairForSearch.request_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="objRequestForRepairForSearch.datetime_of_request_EoS" class="form-label ms-2">Дата и время создания:</label>
+                                <input asp-for="objRequestForRepairForSearch.datetime_of_request_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="objRequestForRepairForSearch.status_EoS" class="form-label ms-2">Статус:</label>
+                                <input asp-for="objRequestForRepairForSearch.status_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
                         </div>
 
                         <div class="row mb-2">
-                            <!-- тут поля -->
+                            <div class="col-4">
+                                <label asp-for="objRequestForRepairForSearch.phone_model_name_EoS" class="form-label ms-2">Модель телефона:</label>
+                                <input asp-for="objRequestForRepairForSearch.phone_model_name_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="objRequestForRepairForSearch.service_EoS" class="form-label ms-2">Услуга:</label>
+                                <input asp-for="objRequestForRepairForSearch.service_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="objRequestForRepairForSearch.client_name_EoS" class="form-label ms-2">Имя клиента:</label>
+                                <input asp-for="objRequestForRepairForSearch.client_name_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                            </div>
                         </div>
 
                         <div class="row">
-                            <!-- тут поля -->
-                            <div class="col-7 ">
+                            <div class="col-4">
+                                <label asp-for="objRequestForRepairForSearch.client_surname_EoS" class="form-label ms-2">Фамилия клиента:</label>
+                                <input asp-for="objRequestForRepairForSearch.client_surname_EoS" autocomplete="off" class="form-control border-1 shadow" />
                             </div>
+                            <div class="col-6 "></div>
                             <div class="col-2 pt-4 text-end">
                                 <button type="submit" class="btn btn btn-outline-info border-1 form-control">
                                     <strong><i class="bi bi-search"></i>&nbsp; Поиск</strong>
@@ -39,7 +63,7 @@
 
             <div class="col-3 text-center text-end mt-4">
                 <a asp-controller="RequestForRepair" asp-action="Upsert" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую заявку на ремонт
+                    <i class="bi bi-plus-circle"></i> &nbsp; Добавить новую заявку
                 </a>
             </div>
         </div>
@@ -60,7 +84,7 @@
 
 
             <tbody>
-                @foreach (var item in Model.OrderBy(u => u.request_id))
+                @foreach (var item in Model.listOfRequestForRepair.OrderBy(u => u.request_id))
                 {
                     <tr>
                         <td style="width: 8%;">@item.request_id</td>

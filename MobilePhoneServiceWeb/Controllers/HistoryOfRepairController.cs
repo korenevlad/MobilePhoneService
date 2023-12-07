@@ -21,10 +21,56 @@ namespace MobilePhoneServiceWeb.Controllers
 
         public IActionResult Index()
         {
-            List<History_of_repair> listOfHor = _unitOfWork.HistoryOfRepair.GetAll(
-                includeProperties: "Request_for_repair_of_history_of_repair").ToList();
-            return View(listOfHor);
+            HistoryOfRepairSearch historyOfRepairSearch = new HistoryOfRepairSearch
+            {
+                objHistoryOfRepairForSearch = null,
+                listOfHistory_of_repair = _unitOfWork.HistoryOfRepair.GetAll(
+                    includeProperties: "Request_for_repair_of_history_of_repair").ToList()
+            };
+            return View(historyOfRepairSearch);
         }
+
+
+
+        [HttpPost]
+        public IActionResult Index(HistoryOfRepairSearch historyOfRepairSearch)
+        {
+            IEnumerable<History_of_repair> query = _unitOfWork.HistoryOfRepair.GetAll(
+                    includeProperties: "Request_for_repair_of_history_of_repair");
+
+            if (!string.IsNullOrEmpty(historyOfRepairSearch.objHistoryOfRepairForSearch.request_id_EoS))
+            {
+                int.TryParse(historyOfRepairSearch.objHistoryOfRepairForSearch.request_id_EoS, out int rfr_Id);
+                query = query.Where(c => c.request_id == rfr_Id);
+            }
+            if (!string.IsNullOrEmpty(historyOfRepairSearch.objHistoryOfRepairForSearch.datetime_of_request_EoS))
+            {
+                query = query.Where(c => c.Request_for_repair_of_history_of_repair.datetime_of_request.ToString().Contains(historyOfRepairSearch.objHistoryOfRepairForSearch.datetime_of_request_EoS));
+            }
+            if (!string.IsNullOrEmpty(historyOfRepairSearch.objHistoryOfRepairForSearch.history_id_EoS))
+            {
+                int.TryParse(historyOfRepairSearch.objHistoryOfRepairForSearch.history_id_EoS, out int hor_Id);
+                query = query.Where(c => c.history_id == hor_Id);
+            }
+            if (!string.IsNullOrEmpty(historyOfRepairSearch.objHistoryOfRepairForSearch.date_start_EoS))
+            {
+                query = query.Where(c => c.date_start.ToString().Contains(historyOfRepairSearch.objHistoryOfRepairForSearch.date_start_EoS));
+            }
+            if (!string.IsNullOrEmpty(historyOfRepairSearch.objHistoryOfRepairForSearch.date_end_EoS))
+            {
+                query = query.Where(c => c.date_end.ToString().Contains(historyOfRepairSearch.objHistoryOfRepairForSearch.date_end_EoS));
+            }
+
+
+            historyOfRepairSearch.listOfHistory_of_repair = query.ToList();
+
+            return View(historyOfRepairSearch);
+        }
+
+
+
+
+
 
 
         public IActionResult Upsert(int? id)

@@ -18,9 +18,56 @@ namespace MobilePhoneServiceWeb.Controllers
 
         public IActionResult Index()
         {
-            List<Request_for_repair> listOfRfr = _unitOfWork.RequestForRepair.GetAll(
-                includeProperties: "Phone_Model_of_request_for_repair,Service_of_request_for_repair,Client_of_request_for_repair").ToList();
-            return View(listOfRfr);
+            RequestForRepairSearch requestForRepairSearch = new RequestForRepairSearch
+            {
+                objRequestForRepairForSearch = null,
+                listOfRequestForRepair = _unitOfWork.RequestForRepair.GetAll(
+                    includeProperties: "Phone_Model_of_request_for_repair,Service_of_request_for_repair,Client_of_request_for_repair").ToList()
+            };
+            return View(requestForRepairSearch);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult Index(RequestForRepairSearch requestForRepairSearch)
+        {
+            IEnumerable<Request_for_repair> query = _unitOfWork.RequestForRepair.GetAll(
+                    includeProperties: "Phone_Model_of_request_for_repair,Service_of_request_for_repair,Client_of_request_for_repair");
+
+            if (!string.IsNullOrEmpty(requestForRepairSearch.objRequestForRepairForSearch.request_id_EoS))
+            {
+                int.TryParse(requestForRepairSearch.objRequestForRepairForSearch.request_id_EoS, out int Rfr_Id);
+                query = query.Where(c => c.request_id == Rfr_Id);
+            }
+            if (!string.IsNullOrEmpty(requestForRepairSearch.objRequestForRepairForSearch.datetime_of_request_EoS))
+            {
+                query = query.Where(c => c.datetime_of_request.ToString().Contains(requestForRepairSearch.objRequestForRepairForSearch.datetime_of_request_EoS));
+            }
+            if (!string.IsNullOrEmpty(requestForRepairSearch.objRequestForRepairForSearch.status_EoS))
+            {
+                query = query.Where(c => c.status.Contains(requestForRepairSearch.objRequestForRepairForSearch.status_EoS));
+            }
+            if (!string.IsNullOrEmpty(requestForRepairSearch.objRequestForRepairForSearch.phone_model_name_EoS))
+            {
+                query = query.Where(c => c.Phone_Model_of_request_for_repair.name.Contains(requestForRepairSearch.objRequestForRepairForSearch.phone_model_name_EoS));
+            }
+            if (!string.IsNullOrEmpty(requestForRepairSearch.objRequestForRepairForSearch.service_EoS))
+            {
+                query = query.Where(c => c.Service_of_request_for_repair.description.Contains(requestForRepairSearch.objRequestForRepairForSearch.service_EoS));
+            }
+            if (!string.IsNullOrEmpty(requestForRepairSearch.objRequestForRepairForSearch.client_name_EoS))
+            {
+                query = query.Where(c => c.Client_of_request_for_repair.name.Contains(requestForRepairSearch.objRequestForRepairForSearch.client_name_EoS));
+            }
+            if (!string.IsNullOrEmpty(requestForRepairSearch.objRequestForRepairForSearch.client_surname_EoS))
+            {
+                query = query.Where(c => c.Client_of_request_for_repair.surname.Contains(requestForRepairSearch.objRequestForRepairForSearch.client_surname_EoS));
+            }
+
+            requestForRepairSearch.listOfRequestForRepair = query.ToList();
+
+            return View(requestForRepairSearch);
         }
 
 

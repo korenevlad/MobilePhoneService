@@ -1,4 +1,4 @@
-﻿@model List<History_of_repair>
+﻿@model HistoryOfRepairSearch
 
 <div class="card shadow border-0 mt-5">
     <div class="card-header bg-primary bg-gradient ml-0 py-2">
@@ -11,39 +11,42 @@
 
     <div class="card-body p-4">
         <div class="row pb-4">
-            <div class="col-9">
-                <form method="post">
-                    <div class="container-fluid center-grid">
+            <form method="post">
+                <div class="container-fluid center-grid">
 
-                        <div class="row mb-2">
-                            <div class="col-4">
-                                <!-- тут поля -->
-                            </div>
-                            <div class="col-4">
-                                <!-- тут поля -->
-                            </div>
-                            <div class="col-4">
-                                <!-- тут поля -->
-                            </div>
+                    <div class="row mb-2">
+                        <div class="col-3">
+                            <label asp-for="objHistoryOfRepairForSearch.request_id_EoS" class="form-label ms-2">Id заявки:</label>
+                            <input asp-for="objHistoryOfRepairForSearch.request_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
                         </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                <!-- тут поля -->
-                            </div>
-
-                            <div class="col-6"></div>
-
-                            <div class="col-2 pt-4 text-end">
-                                <button type="submit" class="btn btn btn-outline-info border-1 form-control">
-                                    <strong><i class="bi bi-search"></i>&nbsp; Поиск</strong>
-                                </button>
-                            </div>
+                        <div class="col-3">
+                            <label asp-for="objHistoryOfRepairForSearch.datetime_of_request_EoS" class="form-label ms-2">Дата и время создания заявки:</label>
+                            <input asp-for="objHistoryOfRepairForSearch.datetime_of_request_EoS" autocomplete="off" class="form-control border-1 shadow" />
                         </div>
-
+                        <div class="col-3">
+                            <label asp-for="objHistoryOfRepairForSearch.history_id_EoS" class="form-label ms-2">Id истории заявки:</label>
+                            <input asp-for="objHistoryOfRepairForSearch.history_id_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                        </div>
+                        <div class="col-3">
+                            <label asp-for="objHistoryOfRepairForSearch.date_start_EoS" class="form-label ms-2">Дата начала работ:</label>
+                            <input asp-for="objHistoryOfRepairForSearch.date_start_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                        </div>
                     </div>
-                </form>
-            </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <label asp-for="objHistoryOfRepairForSearch.date_end_EoS" class="form-label ms-2">Дата конца работ:</label>
+                            <input asp-for="objHistoryOfRepairForSearch.date_end_EoS" autocomplete="off" class="form-control border-1 shadow" />
+                        </div>
+                        <div class="col-7"></div>
+                        <div class="col-2 pt-4 text-end">
+                            <button type="submit" class="btn btn btn-outline-info border-1 form-control">
+                                <strong><i class="bi bi-search"></i>&nbsp; Поиск</strong>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
 
         <table class="table table-bordered table-striped">
@@ -58,7 +61,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.OrderBy(u => u.history_id))
+                @foreach (var item in Model.listOfHistory_of_repair.OrderBy(u => u.history_id))
                 {
                     <tr>
                         <td style="width: 10%;">@item.request_id</td>
