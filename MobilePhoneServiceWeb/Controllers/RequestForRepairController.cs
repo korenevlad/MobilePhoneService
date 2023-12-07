@@ -92,20 +92,23 @@ namespace MobilePhoneServiceWeb.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
+            History_of_repair historyOfRepairToBeDelete = _unitOfWork.HistoryOfRepair.Get(u => u.request_id == id);
             Request_for_repair requestForRepairToBeDelete = _unitOfWork.RequestForRepair.Get(u => u.request_id == id);
-            if (requestForRepairToBeDelete == null)
+           
+            if (historyOfRepairToBeDelete == null || requestForRepairToBeDelete == null)
             {
-                return Json(new { success = false, message = "Ошибка при удалении заявки на ремонт!" });
+                return Json(new { success = false, message = "Ошибка при удалении заявки на ремонт и её истории!" });
             }
             try
             {
+                _unitOfWork.HistoryOfRepair.Remove(historyOfRepairToBeDelete);
                 _unitOfWork.RequestForRepair.Remove(requestForRepairToBeDelete);
                 _unitOfWork.Save();
-                return Json(new { success = true, message = "Заявка на ремонт удалена успешно!" });
+                return Json(new { success = true, message = "Заявка на ремонт и её история удалены успешно!" });
             }
             catch
             {
-                return Json(new { success = false, message = "Удаление невозможно! <br> Нельзя удалить завку без истории!" });
+                return Json(new { success = false, message = "Непредвиденная ошибка при удалении!" });
             }
         }
 
